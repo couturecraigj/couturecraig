@@ -7,11 +7,11 @@ import pic08 from '../assets/images/pic08.jpg'
 import pic09 from '../assets/images/pic09.jpg'
 import pic10 from '../assets/images/pic10.jpg'
 
-const Elements = (props) => (
+const Projects = (props) => (
     <div>
         <Helmet>
-            <title>Elements</title>
-            <meta name="description" content="Elements Page" />
+            <title>Projects</title>
+            <meta name="description" content="Projects Page" />
         </Helmet>
 
         <div id="main" className="alt">
@@ -19,7 +19,7 @@ const Elements = (props) => (
             <section id="one">
                 <div className="inner">
                     <header className="major">
-                        <h1>Elements</h1>
+                        <h1>Projects</h1>
                     </header>
 
                     <h2 id="content">Sample Content</h2>
@@ -49,7 +49,7 @@ const Elements = (props) => (
 
                     <hr className="major" />
 
-                    <h2 id="elements">Elements</h2>
+                    <h2 id="Projects">Projects</h2>
                     <div className="row 200%">
                         <div className="6u 12u(medium)">
 
@@ -407,4 +407,4 @@ const Elements = (props) => (
     </div>
 )
 
-export default Elements
+export default Projects

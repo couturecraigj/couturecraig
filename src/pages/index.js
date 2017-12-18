@@ -66,7 +66,7 @@ export const pageQuery = graphql`
                 description
             }
         }
-        allMarkdownRemark(limit: 6) {
+        allMarkdownRemark(limit: 6, sort: { fields: [frontmatter___date], order: DESC }) {
             edges {
               node {
                 excerpt(pruneLength: 250)

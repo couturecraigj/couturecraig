@@ -41,6 +41,7 @@ const BlogPostTemplate = (props) => {
                       <h1>{post.frontmatter.title}</h1>
                   </header>
                   <span className="image main"><img src={post.frontmatter.mainImg.childImageSharp.resize.src} alt="" /></span>
+                  <h4>{post.frontmatter.date}</h4>
                   <div dangerouslySetInnerHTML={{ __html: post.html }} />
               </div>
           </section>

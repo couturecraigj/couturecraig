@@ -25,6 +25,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
               frontmatter {
                 path
                 title
+                draft
                 mainImg{
                   childImageSharp {
                     resize {
