@@ -7,29 +7,63 @@ import pic08 from '../assets/images/pic08.jpg'
 import pic09 from '../assets/images/pic09.jpg'
 import pic10 from '../assets/images/pic10.jpg'
 
-const Services = (props) => (
+const Services = props => (
   <div>
-      <Helmet>
-          <title>{`Services | CoutureCraig.com`}</title>
-          <meta name="description" content="Generic Page" />
-      </Helmet>
+    <Helmet>
+      <title>{`Services | CoutureCraig.com`}</title>
+      <meta name="description" content="Generic Page" />
+    </Helmet>
 
-      <div id="main" className="alt">
-          <section id="one">
-              <div className="inner">
-                  <header className="major">
-                      <h1>Services</h1>
-                  </header>
-                  {/* <span className="image main"><img src={post.frontmatter.mainImg.childImageSharp.resize.src} alt="" /></span> */}
-                  <div>
-                      <p>Salesforce.com</p>
-                      <p>Web Development</p>
-                      <p>Web Design</p>
-                  </div>
-              </div>
-          </section>
-      </div>
-
+    <div id="main" className="alt">
+      <section id="one">
+        <div className="inner">
+          <header className="major">
+            <h1>Services</h1>
+          </header>
+          {/* <span className="image main"><img src={post.frontmatter.mainImg.childImageSharp.resize.src} alt="" /></span> */}
+          <div>
+            <h3>Salesforce.com</h3>
+            <ul>
+              <li>Visualforce</li>
+              <li>Apex</li>
+            </ul>
+            <h3>Web Design</h3>
+            <ul>
+              <li>Marketing</li>
+              <li>Mockups</li>
+            </ul>
+            <h3>Front-end Development</h3>
+            <ul>
+              <li>React</li>
+              <li>AngularJs</li>
+              <li>Redux</li>
+              <li>CSS</li>
+              <li>WebRTC</li>
+            </ul>
+            <h3>Back-end Server Development</h3>
+            <ul>
+              <li>REST endpoints</li>
+              <li>GraphQL</li>
+              <li>Authentication</li>
+              <li>JWT</li>
+              <li>Cookies</li>
+            </ul>
+            <h3>Full-stack Development</h3>
+            <ul>
+              <li>REST endpoints</li>
+              <li>GraphQL</li>
+              <li>Authentication</li>
+              <li>JWT</li>
+              <li>Cookies</li>
+              <li>React</li>
+              <li>Redux</li>
+              <li>CSS</li>
+              <li>WebRTC</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 )
 

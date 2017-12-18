@@ -4,7 +4,7 @@ const Contact = (props) => (
     <section id="contact">
         <div className="inner">
             <section>
-                <form method="post" action="#">
+                <form method="post" action="/contact">
                     <div className="field half first">
                         <label htmlFor="name">Name</label>
                         <input type="text" name="name" id="name" />
@@ -35,7 +35,7 @@ const Contact = (props) => (
                     <div className="contact-method">
                         <span className="icon alt fa-phone"></span>
                         <h3>Phone</h3>
-                        <span>(603) 400-0243</span>
+                        <span>(802) 387-0237 (Google Voice)</span>
                     </div>
                 </section>
                 <section>
