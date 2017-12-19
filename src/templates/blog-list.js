@@ -15,7 +15,7 @@ const Pagination = ({ index, pageCount, group }) => {
   const after = index !== pageCount
   const nextUrl = index === pageCount ? '#' : `/blog/${index + 1}`
   return (
-    <section className='special'>
+    <section className="special">
       <ul className="pagination">
         <li>
           {before ? (

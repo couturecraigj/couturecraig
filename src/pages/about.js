@@ -13,11 +13,7 @@ const Landing = props => (
       <title>{`About | CoutureCraig.com`}</title>
       <meta name="description" content="Generic Page" />
     </Helmet>
-    <SecondaryBanner
-      title="About"
-      style={1}
-      description="What makes me, me"
-    />
+    <SecondaryBanner title="About" style={1} description="What makes me, me" />
     <div id="main" className="alt">
       <section id="one">
         <div className="inner">

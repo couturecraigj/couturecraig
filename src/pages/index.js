@@ -9,14 +9,16 @@ class HomeIndex extends React.Component {
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteDescription = this.props.data.site.siteMetadata.description
     const edgesNodes = get(this.props, 'data.allMarkdownRemark.edges', [])
-    .filter(edge => {
-      if (process.env.NODE_ENV === 'production' && edge.node.frontmatter.draft === true) {
-        return false
-      }
-      return true
-    }).map(
-      ({ node }) => node
-    )
+      .filter(edge => {
+        if (
+          process.env.NODE_ENV === 'production' &&
+          edge.node.frontmatter.draft === true
+        ) {
+          return false
+        }
+        return true
+      })
+      .map(({ node }) => node)
     return (
       <div>
         <Helmet>
@@ -85,44 +87,44 @@ export default HomeIndex
 // let query
 
 // if (process.env.NODE_ENV === 'production') {
-// query = 
+// query =
 // }
 
 export const pageQuery = graphql`
-query PageQuery {
-  site {
-    siteMetadata {
-      title
-      description
+  query PageQuery {
+    site {
+      siteMetadata {
+        title
+        description
+      }
     }
-  }
-  allMarkdownRemark(
-    limit: 6
-    sort: { fields: [frontmatter___date], order: DESC }
-  ) {
-    edges {
-      node {
-        excerpt(pruneLength: 250)
-        html
-        frontmatter {
-          draft
-          mainImg {
-            childImageSharp {
-              resize(width: 1000) {
-                src
-              }
-              responsiveSizes(maxWidth: 400) {
-                src
-                srcSet
-                sizes
+    allMarkdownRemark(
+      limit: 6
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          excerpt(pruneLength: 250)
+          html
+          frontmatter {
+            draft
+            mainImg {
+              childImageSharp {
+                resize(width: 1000) {
+                  src
+                }
+                responsiveSizes(maxWidth: 400) {
+                  src
+                  srcSet
+                  sizes
+                }
               }
             }
+            path
+            title
           }
-          path
-          title
         }
       }
     }
   }
-}
 `
