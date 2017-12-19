@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "Craig Couture Website",
+    title: "CoutureCraig.com",
     author: "Craig Couture",
     description: "Introduction to Craig Couture the Developer/Designer in Keene, NH"
   },

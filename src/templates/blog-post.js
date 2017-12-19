@@ -6,11 +6,15 @@ import get from 'lodash/get'
 const BlogPostTemplate = props => {
   const post = props.data.markdownRemark
   const siteTitle = get(props, 'data.site.siteMetadata.title')
+  const author = get(props,'data.markdownRemark.frontmatter.author', get(props, 'data.site.siteMetadata.author', 'Craig Couture'))
+  const keywords = get(props, 'data.markdownRemark.frontmatter.keywords', [])
   return (
     <div>
       <Helmet>
-        <title>{`${post.frontmatter.title} | ${siteTitle}`}</title>
-        <meta name="description" content="Generic Page" />
+        <title>{post.frontmatter.title}</title>
+        <meta name="description" content={post.excerpt} />
+        <meta name="author" content={author} />
+        <meta name="keywords" content={keywords} />
       </Helmet>
 
       <div id="main" className="alt">
@@ -46,9 +50,12 @@ export const pageQuery = graphql`
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       id
+      excerpt(pruneLength: 250)
       html
       frontmatter {
         title
+        author
+        keywords
         mainImg {
           childImageSharp {
             resize(width: 1500) {

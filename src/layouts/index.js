@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import '../assets/scss/main.scss'
 import Header from '../components/Header'
+import Helmet from 'react-helmet'
 import Menu from '../components/Menu'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
@@ -43,6 +44,7 @@ class Template extends React.Component {
           this.state.isMenuVisible ? 'is-menu-visible' : ''
         }`}
       >
+      <Helmet titleTemplate={`%s | CoutureCraig.com`} />
         <div id="wrapper">
           <Header onToggleMenu={this.handleToggleMenu} />
           {children()}

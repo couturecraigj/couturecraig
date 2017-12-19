@@ -21,8 +21,8 @@ class HomeIndex extends React.Component {
       .map(({ node }) => node)
     return (
       <div>
-        <Helmet>
-          <title>{siteTitle}</title>
+        <Helmet titleTemplate={`%s | ${siteTitle}`}>
+          <title>Home</title>
           <meta name="description" content={siteDescription} />
           <link rel="shortcut icon" href="/favicon.ico?v=1" />
         </Helmet>

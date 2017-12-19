@@ -4,11 +4,13 @@ const fs = require('fs');
 const { resolve } = require('path')
 const { argv } = require('yargs');
 
-const content = (name) => {
+const content = ({name, author = 'Craig Couture'}) => {
   return `---
 title: ${name}
 date: "${(new Date()).toISOString()}"
 path: "/${slugify(name)}/"
+author: "${author}"
+keywords:
 draft: true
 ---
 `
@@ -25,7 +27,7 @@ gulp.task('post:create', () => {
   if (fs.existsSync(resolve(path, 'index.md'))){
     throw new Error('This File already exists and you should not overwrite it.')
   }
-  fs.writeFile(resolve(path, 'index.md'), content(name), 'utf8', (err) => {
+  fs.writeFile(resolve(path, 'index.md'), content(argv), 'utf8', (err) => {
     if (err) throw err;
   })
 })

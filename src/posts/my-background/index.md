@@ -2,6 +2,8 @@
 title: My Background
 date: "2017-12-16T22:40:32.169Z"
 mainImg: "../../assets/images/pic02.jpg"
+author: "Craig Couture"
+keywords:
 path: "/my-background/"
 draft: true
 ---

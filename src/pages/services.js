@@ -10,8 +10,8 @@ import pic10 from '../assets/images/pic10.jpg'
 const Services = props => (
   <div>
     <Helmet>
-      <title>{`Services | CoutureCraig.com`}</title>
-      <meta name="description" content="Generic Page" />
+      <title>Services</title>
+      <meta name="description" content="Services that Craig can provide" />
     </Helmet>
 
     <div id="main" className="alt">

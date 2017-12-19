@@ -10,8 +10,8 @@ import pic10 from '../assets/images/pic10.jpg'
 const Landing = props => (
   <div>
     <Helmet>
-      <title>{`About | CoutureCraig.com`}</title>
-      <meta name="description" content="Generic Page" />
+      <title>About</title>
+      <meta name="description" content="About Craig Couture" />
     </Helmet>
     <SecondaryBanner title="About" style={1} description="What makes me, me" />
     <div id="main" className="alt">
