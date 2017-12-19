@@ -17,9 +17,6 @@ class HomeIndex extends React.Component {
     }).map(
       ({ node }) => node
     )
-    const images = edgesNodes.map(
-      edge => edge.frontmatter.mainImg.childImageSharp.resize.src
-    )
     return (
       <div>
         <Helmet>

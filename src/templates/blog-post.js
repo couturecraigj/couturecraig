@@ -25,6 +25,7 @@ import pic11 from '../assets/images/pic11.jpg'
 // }
 
 const BlogPostTemplate = (props) => {
+  console.log(props.data.markdownRemark.html)
   const post = props.data.markdownRemark
   const siteTitle = get(props, 'data.site.siteMetadata.title')
   return (

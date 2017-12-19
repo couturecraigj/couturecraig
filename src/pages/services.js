@@ -38,6 +38,7 @@ const Services = props => (
               <li>AngularJs</li>
               <li>Redux</li>
               <li>CSS</li>
+              <li>WebSockets</li>
               <li>WebRTC</li>
             </ul>
             <h3>Back-end Server Development</h3>
@@ -45,6 +46,7 @@ const Services = props => (
               <li>REST endpoints</li>
               <li>GraphQL</li>
               <li>Authentication</li>
+              <li>WebSockets</li>
               <li>JWT</li>
               <li>Cookies</li>
             </ul>
@@ -58,6 +60,7 @@ const Services = props => (
               <li>React</li>
               <li>Redux</li>
               <li>CSS</li>
+              <li>WebSockets</li>
               <li>WebRTC</li>
             </ul>
           </div>
