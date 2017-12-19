@@ -1,9 +1,9 @@
 ---
 title: Introduction
-date: "2017-12-15T22:12:03.284Z"
+date: "2017-12-19T16:08:32.707Z"
 mainImg: "../../assets/images/pic01.jpg"
 path: "/introduction/"
-draft: true
+draft: false
 ---
 # Craig Couture
 
