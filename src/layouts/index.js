@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import Helmet from 'react-helmet'
 import Menu from '../components/Menu'
 import Contact from '../components/Contact'
+import BgImage from '../components/BgImage'
 import Footer from '../components/Footer'
 
 class Template extends React.Component {
@@ -44,7 +45,10 @@ class Template extends React.Component {
           this.state.isMenuVisible ? 'is-menu-visible' : ''
         }`}
       >
-      <Helmet titleTemplate={`%s | CoutureCraig.com`} />
+        {/* <BgImage sizes={this.props.data.sizes.sizes} /> */}
+        <Helmet titleTemplate={`%s | ${this.props.data.site.siteMetadata.title}`}>
+          <meta name="description" content={this.props.data.site.siteMetadata.description} />
+        </Helmet>
         <div id="wrapper">
           <Header onToggleMenu={this.handleToggleMenu} />
           {children()}
@@ -62,3 +66,26 @@ Template.propTypes = {
 }
 
 export default Template
+
+export const pageQuery = graphql`
+  query LayoutPageQuery {
+    site {
+      siteMetadata {
+        title
+        description
+      }
+    }
+    sizes: imageSharp(id: { regex: "/banner.jpg/" }) {
+      sizes(
+        traceSVG: {
+          color: "#8d82c4"
+          turnPolicy: TURNPOLICY_MINORITY
+          blackOnWhite: false
+        },
+        toFormat: PNG
+      ) {
+          ...GatsbyImageSharpSizes_withWebp_tracedSVG
+      }
+    }
+  }
+`

@@ -2,10 +2,13 @@ import React from 'react'
 import Link from 'gatsby-link'
 import { get } from 'lodash'
 import Helmet from 'react-helmet'
+import BgImage from '../components/BgImage'
 import Banner from '../components/Banner'
 
+const Image = require('../assets/images/banner.jpg')
 class HomeIndex extends React.Component {
   render() {
+    console.log(Image)
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteDescription = this.props.data.site.siteMetadata.description
     const edgesNodes = get(this.props, 'data.allMarkdownRemark.edges', [])
@@ -33,6 +36,7 @@ class HomeIndex extends React.Component {
           <section id="one" className="tiles">
             {edgesNodes.map(node => (
               <article
+                key={node.frontmatter.path}
                 style={{
                   backgroundImage: `url(${
                     node.frontmatter.mainImg.childImageSharp.resize.src
@@ -76,7 +80,6 @@ class HomeIndex extends React.Component {
             </div>
           </section>
         </div>
-        {edgesNodes.map(edge => <div>{edge.frontmatter.mainImg.id}</div>)}
       </div>
     )
   }
@@ -110,13 +113,29 @@ export const pageQuery = graphql`
             draft
             mainImg {
               childImageSharp {
-                resize(width: 1000) {
+                resize(
+                  
+                  height: 500
+                  cropFocus: ATTENTION,
+                  width: 1000
+                ) {
                   src
                 }
-                responsiveSizes(maxWidth: 400) {
+                responsiveSizes(maxWidth: 1000) {
                   src
                   srcSet
                   sizes
+                }
+                sizes(traceSVG: {
+                  color: "#8d82c4"
+                  turnPolicy: TURNPOLICY_MINORITY
+                  blackOnWhite: false
+                },
+                maxWidth: 1000,
+                # height: 500
+                cropFocus: ATTENTION,
+                toFormat: PNG) {
+                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
                 }
               }
             }

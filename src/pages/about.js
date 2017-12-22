@@ -1,11 +1,8 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import Img from 'gatsby-image'
 import SecondaryBanner from '../components/SecondaryBanner'
-
-import pic08 from '../assets/images/pic08.jpg'
-import pic09 from '../assets/images/pic09.jpg'
-import pic10 from '../assets/images/pic10.jpg'
 
 const Landing = props => (
   <div>
@@ -17,7 +14,17 @@ const Landing = props => (
     <div id="main" className="alt">
       <section id="one">
         <div className="inner">
-          <h2>About Craig</h2>
+          <ul>
+            <li>
+              <a href="#about-craig">About Craig</a>
+            </li>
+            <li>
+              <a href="#about-blog">About This Blog</a>
+            </li>
+          </ul>
+
+          <Img sizes={props.data.sizes.sizes} />
+          <h2 id="about-craig">About Craig</h2>
           <h3>Personal</h3>
           <p>
             I was born and raised in the Northeast and spent my childhood near
@@ -113,10 +120,44 @@ const Landing = props => (
             that I am working on as well as my fulltime job working for U.S.
             Security Associates as a Salesforce Developer/Admin/Architect.
           </p>
+          <h2 id="about-blog">About This Blog</h2>
+          <h3>Goal</h3>
+          <p>
+            The goal of this on a personal level is to try to become a better
+            writer. But also I want this to be a help for others trying to learn
+            about things like development, especially if they did not go to
+            school for it (like me). I also want to talk about things that I
+            think this type of field can be applied to. Examples that I have
+            been thinking about are the following.
+          </p>
+          <ul>
+            <li>Translation helps</li>
+            <li>Graph theory applied to Context in Study</li>
+            <li>Privacy through the use of WebRTC</li>
+          </ul>
         </div>
       </section>
     </div>
   </div>
 )
+
+export const pageQuery = graphql`
+  query AboutPageQuery {
+    sizes: imageSharp(id: { regex: "/christmas-photo-2.jpg/" }) {
+      sizes(
+        traceSVG: {
+          color: "#8d82c4"
+          turnPolicy: TURNPOLICY_MINORITY
+          blackOnWhite: false
+        }
+        maxWidth: 1500
+        cropFocus: ATTENTION
+        toFormat: PNG
+      ) {
+        ...GatsbyImageSharpSizes_withWebp_tracedSVG
+      }
+    }
+  }
+`
 
 export default Landing

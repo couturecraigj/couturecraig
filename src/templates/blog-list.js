@@ -2,11 +2,8 @@ import React from 'react'
 import { get } from 'lodash'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import Img from 'gatsby-image'
 import SecondaryBanner from '../components/SecondaryBanner'
-
-import pic08 from '../assets/images/pic08.jpg'
-import pic09 from '../assets/images/pic09.jpg'
-import pic10 from '../assets/images/pic10.jpg'
 
 const Pagination = ({ index, pageCount, group }) => {
   if (index === 1 && index === pageCount) return null
@@ -87,10 +84,10 @@ const Blog = ({ data, pathContext }) => {
         <section id="two" className="spotlights">
           {group.length ? (
             group.map(({ node }) => (
-              <section>
+              <section key={node.frontmatter.path}>
                 <Link to={`/post${node.frontmatter.path}`} className="image">
-                  <img
-                    src={node.frontmatter.mainImg.childImageSharp.resize.src}
+                  <Img
+                    sizes={node.frontmatter.mainImg.childImageSharp.sizes}
                     alt=""
                   />
                 </Link>

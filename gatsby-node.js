@@ -19,8 +19,27 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             draft
             mainImg{
               childImageSharp {
-                resize {
+                resize(width: 1500) {
                   src
+                }
+                sizes(
+                  traceSVG: {
+                    color: "#8d82c4"
+                    turnPolicy: TURNPOLICY_MINORITY
+                    blackOnWhite: false
+                  },
+                  cropFocus: ATTENTION,
+                  toFormat: PNG,
+                  maxHeight: 1000,
+                  maxWidth: 1000
+                ) {
+                  tracedSVG
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  sizes
                 }
               }
             }
@@ -48,6 +67,25 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                 resize {
                   src
                 }
+                sizes(
+                  traceSVG: {
+                    color: "#8d82c4"
+                    turnPolicy: TURNPOLICY_MINORITY
+                    blackOnWhite: false
+                  },
+                  cropFocus: ATTENTION,
+                  toFormat: PNG,
+                  maxHeight: 1000,
+                  maxWidth: 1000,
+                ) {
+                  tracedSVG
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  sizes
+                }
               }
             }
           }
@@ -58,9 +96,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 `
   }
   return new Promise((resolve, reject) => {
-    /**
-     * TODO: Using this you can create all the pagination
-     */
     const blogPost = path.resolve('./src/templates/blog-post.js')
     const blogPageList = path.resolve('./src/templates/blog-list.js')
     resolve(
@@ -72,7 +107,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         if (_.get(result, 'data.allMarkdownRemark.edges', []).length === 0) {
           createPage({
             path: `/blog/`,
-            component: blogPageList
+            component: blogPageList,
           })
         } else {
           createPaginatedPages({
@@ -83,7 +118,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
             pathPrefix: 'blog',
           })
         }
-        
+
         // Create blog posts pages.
         _.each(_.get(result, 'data.allMarkdownRemark.edges', []), edge => {
           createPage({

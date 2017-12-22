@@ -1,7 +1,7 @@
 ---
 title: Introduction
 date: "2017-12-19T16:08:32.707Z"
-mainImg: "../../assets/images/pic01.jpg"
+mainImg: "../../assets/images/christmas-photo.jpg"
 path: "/introduction/"
 author: "Craig Couture"
 keywords:

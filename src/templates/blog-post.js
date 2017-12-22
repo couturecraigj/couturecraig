@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
+import Img from 'gatsby-image'
 import get from 'lodash/get'
 
 const BlogPostTemplate = props => {
@@ -24,8 +25,8 @@ const BlogPostTemplate = props => {
               <h1>{post.frontmatter.title}</h1>
             </header>
             <span className="image main">
-              <img
-                src={post.frontmatter.mainImg.childImageSharp.resize.src}
+              <Img
+                sizes={post.frontmatter.mainImg.childImageSharp.sizes}
                 alt=""
               />
             </span>
@@ -61,10 +62,18 @@ export const pageQuery = graphql`
             resize(width: 1500) {
               src
             }
-            responsiveSizes(maxWidth: 400) {
-              src
-              srcSet
-              sizes
+            sizes(
+              traceSVG: {
+                color: "#8d82c4",
+                turnPolicy: TURNPOLICY_MINORITY,
+                blackOnWhite: false
+              },
+              cropFocus: ATTENTION,
+              maxHeight: 1000,
+              maxWidth: 1000,
+              toFormat: PNG
+            ) {
+              ...GatsbyImageSharpSizes_withWebp_tracedSVG
             }
           }
         }
