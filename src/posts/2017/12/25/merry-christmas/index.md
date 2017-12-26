@@ -2,6 +2,7 @@
 title: "Merry Christmas"
 date: "2017-12-25T20:24:05.012Z"
 path: "/2017/12/25/merry-christmas/"
+mainImg: "./pexels-photo-728458.jpeg"
 author: "Craig Couture"
 keywords:
   - Holiday
