@@ -75,7 +75,7 @@ export const pageQuery = graphql`
         description
       }
     }
-    sizes: imageSharp(id: { regex: "/banner.jpg/" }) {
+    sizes: imageSharp(id: { regex: "/pexels-photo-185699.jpeg/" }) {
       sizes(
         traceSVG: {
           color: "#8d82c4"

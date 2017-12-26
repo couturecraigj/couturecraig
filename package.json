@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Craig Couture",
   "dependencies": {
+    "copy-dir": "^0.3.0",
     "gatsby": "^1.9.118",
     "gatsby-image": "^1.0.27",
     "gatsby-link": "^1.6.28",
@@ -15,8 +16,10 @@
     "gatsby-plugin-sass": "^1.0.14",
     "gatsby-plugin-sharp": "^1.6.21",
     "gatsby-plugin-styled-components": "^2.0.4",
+    "gatsby-remark-autolink-headers": "^1.4.10",
     "gatsby-remark-copy-linked-files": "^1.5.9",
     "gatsby-remark-images": "^1.5.33",
+    "gatsby-remark-responsive-iframe": "^1.4.16",
     "gatsby-source-filesystem": "^1.5.8",
     "gatsby-transformer-remark": "^1.7.21",
     "gatsby-transformer-sharp": "^1.6.14",

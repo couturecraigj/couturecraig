@@ -1,11 +1,14 @@
-const name = "CoutureCraig.com"
-const short_name = "Couture Craig"
+const name = 'CoutureCraig.com'
+const short_name = 'Couture Craig'
+const siteUrl = 'https://www.couturecraig.com'
 module.exports = {
   siteMetadata: {
     title: name,
-    author: "Craig Couture",
-    description: "Introduction to Craig Couture the Developer/Designer in Keene, NH",
-    backgroundImage: "./src/assets/images/banner.jpg"
+    author: 'Craig Couture',
+    description:
+      'Introduction to Craig Couture the Developer/Designer in Keene, NH',
+    siteUrl,
+    backgroundImage: './src/assets/images/pexels-photo-185699.jpeg',
   },
   pathPrefix: '/',
   plugins: [
@@ -13,7 +16,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/posts`,
-        name: "posts",
+        name: 'posts',
       },
     },
     {
@@ -33,14 +36,15 @@ module.exports = {
               maxWidth: 630,
             },
           },
-          "gatsby-remark-copy-linked-files",
+          `gatsby-remark-autolink-headers`,
+          'gatsby-remark-copy-linked-files',
         ],
       },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-111355699-1",
+        trackingId: 'UA-111355699-1',
         // Setting this parameter is optional
         // anonymize: true,
       },
@@ -55,10 +59,10 @@ module.exports = {
       options: {
         name,
         short_name,
-        start_url: "/",
-        background_color: "#242943",
-        theme_color: "#9bf1ff",
-        display: "minimal-ui",
+        start_url: '/',
+        background_color: '#242943',
+        theme_color: '#9bf1ff',
+        display: 'minimal-ui',
         icons: [
           {
             // Everything in /static will be copied to an equivalent
@@ -77,6 +81,63 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-offline`
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                const path = (site.siteMetadata.siteUrl + '/post' + edge.node.frontmatter.path).replace(/([^:])\/(\/)/g, '$1$2')
+                console.log(path)
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  url: path,
+                  guid: path,
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  limit: 1000,
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                  filter: {frontmatter: { draft: { ne: true } }}
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      frontmatter {
+                        title
+                        date
+                        path
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`
+    },
+    `gatsby-plugin-offline`,
   ],
 }

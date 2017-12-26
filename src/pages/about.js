@@ -4,7 +4,19 @@ import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 import SecondaryBanner from '../components/SecondaryBanner'
 
-const Landing = props => (
+const structuredData = `{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://www.couturecraig.com/",
+  "name": "Couture Craig Consulting",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-802-387-0237",
+    "contactType": "Customer service",
+  }
+}`
+
+const About = props => (
   <div>
     <Helmet>
       <title>About</title>
@@ -138,12 +150,13 @@ const Landing = props => (
         </div>
       </section>
     </div>
+    <script type="application/ld+json">{structuredData}</script>
   </div>
 )
 
 export const pageQuery = graphql`
   query AboutPageQuery {
-    sizes: imageSharp(id: { regex: "/christmas-photo-2.jpg/" }) {
+    sizes: imageSharp(id: { regex: "/christmas-photo-2-full.jpg/" }) {
       sizes(
         traceSVG: {
           color: "#8d82c4"
@@ -160,4 +173,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default Landing
+export default About

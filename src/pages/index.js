@@ -5,10 +5,19 @@ import Helmet from 'react-helmet'
 import BgImage from '../components/BgImage'
 import Banner from '../components/Banner'
 
-const Image = require('../assets/images/banner.jpg')
+const structuredData = `{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://www.couturecraig.com/",
+  "name": "Couture Craig Consulting",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-802-387-0237",
+    "contactType": "Customer service",
+  }
+}`
 class HomeIndex extends React.Component {
   render() {
-    console.log(Image)
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteDescription = this.props.data.site.siteMetadata.description
     const edgesNodes = get(this.props, 'data.allMarkdownRemark.edges', [])
@@ -38,9 +47,10 @@ class HomeIndex extends React.Component {
               <article
                 key={node.frontmatter.path}
                 style={{
-                  backgroundImage: `url(${
-                    node.frontmatter.mainImg.childImageSharp.resize.src
-                  })`,
+                  backgroundImage: `url(${get(
+                    node,
+                    'frontmatter.mainImg.childImageSharp.resize.src'
+                  , get(this.props.data, 'defaultImage.resize.src'))})`
                 }}
               >
                 <header className="major">
@@ -80,6 +90,7 @@ class HomeIndex extends React.Component {
             </div>
           </section>
         </div>
+        <script type="application/ld+json">{structuredData}</script>
       </div>
     )
   }
@@ -101,6 +112,11 @@ export const pageQuery = graphql`
         description
       }
     }
+    defaultImage: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
+      resize(height: 500, cropFocus: ATTENTION, width: 1000) {
+        src
+      }
+    }
     allMarkdownRemark(
       limit: 6
       sort: { fields: [frontmatter___date], order: DESC }
@@ -113,12 +129,7 @@ export const pageQuery = graphql`
             draft
             mainImg {
               childImageSharp {
-                resize(
-                  
-                  height: 500
-                  cropFocus: ATTENTION,
-                  width: 1000
-                ) {
+                resize(height: 500, cropFocus: ATTENTION, width: 1000) {
                   src
                 }
                 responsiveSizes(maxWidth: 1000) {
@@ -126,15 +137,17 @@ export const pageQuery = graphql`
                   srcSet
                   sizes
                 }
-                sizes(traceSVG: {
-                  color: "#8d82c4"
-                  turnPolicy: TURNPOLICY_MINORITY
-                  blackOnWhite: false
-                },
-                maxWidth: 1000,
-                # height: 500
-                cropFocus: ATTENTION,
-                toFormat: PNG) {
+                sizes(
+                  traceSVG: {
+                    color: "#8d82c4"
+                    turnPolicy: TURNPOLICY_MINORITY
+                    blackOnWhite: false
+                  }
+                  maxWidth: 1000
+                  # height: 500
+                  cropFocus: ATTENTION
+                  toFormat: PNG
+                ) {
                   ...GatsbyImageSharpSizes_withWebp_tracedSVG
                 }
               }

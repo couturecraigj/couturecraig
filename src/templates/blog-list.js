@@ -1,5 +1,5 @@
 import React from 'react'
-import { get } from 'lodash'
+import { get, has } from 'lodash'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
@@ -64,7 +64,8 @@ const Pagination = ({ index, pageCount, group }) => {
   )
 }
 
-const Blog = ({ data, pathContext }) => {
+const Blog = (props) => {
+  const { data, pathContext } = props
   const { group = [], index = 1, first, last, pageCount = 1 } = pathContext
   const previousUrl = index - 1 == 1 ? '' : (index - 1).toString()
   const nextUrl = (index + 1).toString()
@@ -86,10 +87,23 @@ const Blog = ({ data, pathContext }) => {
             group.map(({ node }) => (
               <section key={node.frontmatter.path}>
                 <Link to={`/post${node.frontmatter.path}`} className="image">
-                  <Img
-                    sizes={node.frontmatter.mainImg.childImageSharp.sizes}
-                    alt=""
-                  />
+                  {has(node, 'frontmatter.mainImg.childImageSharp.sizes') ? (
+                    <Img
+                      sizes={get(
+                        node,
+                        'frontmatter.mainImg.childImageSharp.sizes'
+                      )}
+                      alt=""
+                    />
+                  ) : ( null
+                    /* <Img
+                      sizes={get(
+                        node,
+                        'frontmatter.mainImg.childImageSharp.sizes'
+                      )}
+                      alt=""
+                    /> */
+                  )}
                 </Link>
                 <div className="content">
                   <div className="inner">

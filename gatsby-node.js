@@ -7,8 +7,27 @@ const fs = require(`fs-extra`)
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
+  // pexels-photo-132340
   let query = `
   {
+    sizes: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
+      sizes(
+        traceSVG: {
+          color: "#8d82c4"
+          turnPolicy: TURNPOLICY_MINORITY
+          blackOnWhite: false
+        },
+        toFormat: PNG
+      ) {
+          tracedSVG
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+      }
+    }
     allMarkdownRemark(limit: 1000, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
@@ -28,10 +47,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     turnPolicy: TURNPOLICY_MINORITY
                     blackOnWhite: false
                   },
-                  cropFocus: ATTENTION,
                   toFormat: PNG,
-                  maxHeight: 1000,
-                  maxWidth: 1000
                 ) {
                   tracedSVG
                   aspectRatio
@@ -52,6 +68,24 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   if (process.env.NODE_ENV === 'production') {
     query = `
   {
+    sizes: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
+      sizes(
+        traceSVG: {
+          color: "#8d82c4"
+          turnPolicy: TURNPOLICY_MINORITY
+          blackOnWhite: false
+        },
+        toFormat: PNG
+      ) {
+          tracedSVG
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+          sizes
+      }
+    }
     allMarkdownRemark(limit: 1000,
       sort: { fields: [frontmatter___date], order: DESC },
       filter: { frontmatter: { draft: { eq: false }}}) {
@@ -73,10 +107,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                     turnPolicy: TURNPOLICY_MINORITY
                     blackOnWhite: false
                   },
-                  cropFocus: ATTENTION,
-                  toFormat: PNG,
-                  maxHeight: 1000,
-                  maxWidth: 1000,
+                  toFormat: PNG
                 ) {
                   tracedSVG
                   aspectRatio
@@ -111,9 +142,27 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           })
         } else {
           createPaginatedPages({
-            edges: _.get(result, 'data.allMarkdownRemark.edges', []),
+            edges: _.get(result, 'data.allMarkdownRemark.edges', []).map(
+              edge =>
+                _.has(edge, 'node.frontmatter.mainImg.childImageSharp.sizes')
+                  ? edge
+                  : Object.assign({}, edge, {
+                    node: Object.assign({}, _.get(edge, 'node', {}), {
+                      frontmatter: Object.assign({}, _.get(edge, 'node.frontmatter', {}), {
+                        mainImg: Object.assign({}, _.get(edge, 'node.frontmatter.mainImage', {}), {
+                          childImageSharp: Object.assign({}, _.get(edge, 'node.frontmatter.mainImage.childImageSharp', {}), {
+                            sizes: _.get(result, 'data.sizes.sizes')
+                          })
+                        })
+                      })
+                    })
+                  })
+            ),
             createPage: createPage,
             pageTemplate: './src/templates/blog-list.js',
+            context: {
+              sizes: _.get(result, 'data.sizes.sizes'),
+            },
             // pageLength: 5, // This is optional and defaults to 10 if not used
             pathPrefix: 'blog',
           })
