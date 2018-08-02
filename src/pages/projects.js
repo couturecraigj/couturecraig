@@ -14,10 +14,10 @@ const Projects = props => (
       <meta name="description" content="Projects Page" />
     </Helmet>
 
-    <div id="main" className="alt">
+    <div id="main" class="alt">
       <section id="one">
-        <div className="inner">
-          <header className="major">
+        <div class="inner">
+          <header class="major">
             <h1>Projects</h1>
           </header>
 
@@ -31,8 +31,8 @@ const Projects = props => (
             praesent turpis eu ac lacinia nunc ac commodo gravida adipiscing
             eget accumsan ac nunc adipiscing adipiscing.
           </p>
-          <div className="row">
-            <div className="6u 12u$(small)">
+          <div class="row">
+            <div class="6u 12u$(small)">
               <h3>Sem turpis amet semper</h3>
               <p>
                 Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida
@@ -44,7 +44,7 @@ const Projects = props => (
                 tempus accumsan.
               </p>
             </div>
-            <div className="6u 12u$(small)">
+            <div class="6u 12u$(small)">
               <h3>Magna odio tempus commodo</h3>
               <p>
                 In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim
@@ -56,7 +56,7 @@ const Projects = props => (
                 praesent.
               </p>
             </div>
-            <div className="4u 12u$(medium)">
+            <div class="4u 12u$(medium)">
               <h3>Interdum sapien gravida</h3>
               <p>
                 Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida
@@ -66,7 +66,7 @@ const Projects = props => (
                 accumsan.
               </p>
             </div>
-            <div className="4u 12u$(medium)">
+            <div class="4u 12u$(medium)">
               <h3>Faucibus consequat lorem</h3>
               <p>
                 Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida
@@ -76,7 +76,7 @@ const Projects = props => (
                 accumsan.
               </p>
             </div>
-            <div className="4u 12u$(medium)">
+            <div class="4u 12u$(medium)">
               <h3>Accumsan montes viverra</h3>
               <p>
                 Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida
@@ -88,11 +88,11 @@ const Projects = props => (
             </div>
           </div>
 
-          <hr className="major" />
+          <hr class="major" />
 
           <h2 id="Projects">Projects</h2>
-          <div className="row 200%">
-            <div className="6u 12u(medium)">
+          <div class="row 200%">
+            <div class="6u 12u(medium)">
               <h3>Text</h3>
               <p>
                 This is <b>bold</b> and this is <strong>strong</strong>. This is{' '}
@@ -115,8 +115,8 @@ const Projects = props => (
               </p>
 
               <h3>Lists</h3>
-              <div className="row">
-                <div className="6u 12u(small)">
+              <div class="row">
+                <div class="6u 12u(small)">
                   <h4>Unordered</h4>
                   <ul>
                     <li>Dolor etiam magna etiam.</li>
@@ -125,13 +125,13 @@ const Projects = props => (
                   </ul>
 
                   <h4>Alternate</h4>
-                  <ul className="alt">
+                  <ul class="alt">
                     <li>Dolor etiam magna etiam.</li>
                     <li>Sagittis lorem eleifend.</li>
                     <li>Felis feugiat viverra.</li>
                   </ul>
                 </div>
-                <div className="6u 12u(small)">
+                <div class="6u 12u(small)">
                   <h4>Ordered</h4>
                   <ol>
                     <li>Dolor etiam magna etiam.</li>
@@ -143,52 +143,52 @@ const Projects = props => (
                   </ol>
 
                   <h4>Icons</h4>
-                  <ul className="icons">
+                  <ul class="icons">
                     <li>
-                      <a href="#" className="icon fa-twitter">
-                        <span className="label">Twitter</span>
+                      <a href="#" class="icon fa-twitter">
+                        <span class="label">Twitter</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="icon fa-facebook">
-                        <span className="label">Facebook</span>
+                      <a href="#" class="icon fa-facebook">
+                        <span class="label">Facebook</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="icon fa-instagram">
-                        <span className="label">Instagram</span>
+                      <a href="#" class="icon fa-instagram">
+                        <span class="label">Instagram</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="icon fa-github">
-                        <span className="label">Github</span>
+                      <a href="#" class="icon fa-github">
+                        <span class="label">Github</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="icon fa-dribbble">
-                        <span className="label">Dribbble</span>
+                      <a href="#" class="icon fa-dribbble">
+                        <span class="label">Dribbble</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="icon fa-tumblr">
-                        <span className="label">Tumblr</span>
+                      <a href="#" class="icon fa-tumblr">
+                        <span class="label">Tumblr</span>
                       </a>
                     </li>
                   </ul>
-                  <ul className="icons">
+                  <ul class="icons">
                     <li>
-                      <a href="#" className="icon alt fa-twitter">
-                        <span className="label">Twitter</span>
+                      <a href="#" class="icon alt fa-twitter">
+                        <span class="label">Twitter</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="icon alt fa-facebook">
-                        <span className="label">Facebook</span>
+                      <a href="#" class="icon alt fa-facebook">
+                        <span class="label">Facebook</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="icon alt fa-instagram">
-                        <span className="label">Instagram</span>
+                      <a href="#" class="icon alt fa-instagram">
+                        <span class="label">Instagram</span>
                       </a>
                     </li>
                   </ul>
@@ -226,82 +226,82 @@ const Projects = props => (
               </dl>
 
               <h4>Actions</h4>
-              <ul className="actions">
+              <ul class="actions">
                 <li>
-                  <a href="#" className="button special">
+                  <a href="#" class="button special">
                     Default
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button">
+                  <a href="#" class="button">
                     Default
                   </a>
                 </li>
               </ul>
-              <ul className="actions small">
+              <ul class="actions small">
                 <li>
-                  <a href="#" className="button special small">
+                  <a href="#" class="button special small">
                     Small
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button small">
+                  <a href="#" class="button small">
                     Small
                   </a>
                 </li>
               </ul>
-              <div className="row">
-                <div className="6u 12u(small)">
-                  <ul className="actions vertical">
+              <div class="row">
+                <div class="6u 12u(small)">
+                  <ul class="actions vertical">
                     <li>
-                      <a href="#" className="button special">
+                      <a href="#" class="button special">
                         Default
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="button">
-                        Default
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="6u 12u(small)">
-                  <ul className="actions vertical small">
-                    <li>
-                      <a href="#" className="button special small">
-                        Small
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="button small">
-                        Small
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="6u 12u(small)">
-                  <ul className="actions vertical">
-                    <li>
-                      <a href="#" className="button special fit">
-                        Default
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="button fit">
+                      <a href="#" class="button">
                         Default
                       </a>
                     </li>
                   </ul>
                 </div>
-                <div className="6u 12u(small)">
-                  <ul className="actions vertical small">
+                <div class="6u 12u(small)">
+                  <ul class="actions vertical small">
                     <li>
-                      <a href="#" className="button special small fit">
+                      <a href="#" class="button special small">
                         Small
                       </a>
                     </li>
                     <li>
-                      <a href="#" className="button small fit">
+                      <a href="#" class="button small">
+                        Small
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="6u 12u(small)">
+                  <ul class="actions vertical">
+                    <li>
+                      <a href="#" class="button special fit">
+                        Default
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="button fit">
+                        Default
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="6u 12u(small)">
+                  <ul class="actions vertical small">
+                    <li>
+                      <a href="#" class="button special small fit">
+                        Small
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="button small fit">
                         Small
                       </a>
                     </li>
@@ -310,22 +310,22 @@ const Projects = props => (
               </div>
 
               <h4>Pagination</h4>
-              <ul className="pagination">
+              <ul class="pagination">
                 <li>
-                  <span className="button small disabled">Prev</span>
+                  <span class="button small disabled">Prev</span>
                 </li>
                 <li>
-                  <a href="#" className="page active">
+                  <a href="#" class="page active">
                     1
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="page">
+                  <a href="#" class="page">
                     2
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="page">
+                  <a href="#" class="page">
                     3
                   </a>
                 </li>
@@ -333,22 +333,22 @@ const Projects = props => (
                   <span>&hellip;</span>
                 </li>
                 <li>
-                  <a href="#" className="page">
+                  <a href="#" class="page">
                     8
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="page">
+                  <a href="#" class="page">
                     9
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="page">
+                  <a href="#" class="page">
                     10
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button small">
+                  <a href="#" class="button small">
                     Next
                   </a>
                 </li>
@@ -366,7 +366,7 @@ const Projects = props => (
               <h3>Table</h3>
 
               <h4>Default</h4>
-              <div className="table-wrapper">
+              <div class="table-wrapper">
                 <table>
                   <thead>
                     <tr>
@@ -412,8 +412,8 @@ const Projects = props => (
               </div>
 
               <h4>Alternate</h4>
-              <div className="table-wrapper">
-                <table className="alt">
+              <div class="table-wrapper">
+                <table class="alt">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -457,104 +457,104 @@ const Projects = props => (
                 </table>
               </div>
             </div>
-            <div className="6u 12u(medium)">
+            <div class="6u 12u(medium)">
               <h3>Buttons</h3>
-              <ul className="actions">
+              <ul class="actions">
                 <li>
-                  <a href="#" className="button special">
+                  <a href="#" class="button special">
                     Special
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button">
+                  <a href="#" class="button">
                     Default
                   </a>
                 </li>
               </ul>
-              <ul className="actions">
+              <ul class="actions">
                 <li>
-                  <a href="#" className="button big">
+                  <a href="#" class="button big">
                     Big
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button">
+                  <a href="#" class="button">
                     Default
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button small">
+                  <a href="#" class="button small">
                     Small
                   </a>
                 </li>
               </ul>
-              <ul className="actions">
+              <ul class="actions">
                 <li>
-                  <a href="#" className="button special big">
+                  <a href="#" class="button special big">
                     Big
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button special">
+                  <a href="#" class="button special">
                     Default
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button special small">
+                  <a href="#" class="button special small">
                     Small
                   </a>
                 </li>
               </ul>
-              <ul className="actions fit">
+              <ul class="actions fit">
                 <li>
-                  <a href="#" className="button special fit">
+                  <a href="#" class="button special fit">
                     Fit
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button fit">
+                  <a href="#" class="button fit">
                     Fit
                   </a>
                 </li>
               </ul>
-              <ul className="actions fit small">
+              <ul class="actions fit small">
                 <li>
-                  <a href="#" className="button special fit small">
+                  <a href="#" class="button special fit small">
                     Fit + Small
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button fit small">
+                  <a href="#" class="button fit small">
                     Fit + Small
                   </a>
                 </li>
               </ul>
-              <ul className="actions">
+              <ul class="actions">
                 <li>
-                  <a href="#" className="button special icon fa-search">
+                  <a href="#" class="button special icon fa-search">
                     Icon
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="button icon fa-download">
+                  <a href="#" class="button icon fa-download">
                     Icon
                   </a>
                 </li>
               </ul>
-              <ul className="actions">
+              <ul class="actions">
                 <li>
-                  <span className="button special disabled">Special</span>
+                  <span class="button special disabled">Special</span>
                 </li>
                 <li>
-                  <span className="button disabled">Default</span>
+                  <span class="button disabled">Default</span>
                 </li>
               </ul>
 
               <h3>Form</h3>
 
               <form method="post" action="#">
-                <div className="row uniform">
-                  <div className="6u 12u(xsmall)">
+                <div class="row uniform">
+                  <div class="6u 12u(xsmall)">
                     <input
                       type="text"
                       name="demo-name"
@@ -563,7 +563,7 @@ const Projects = props => (
                       placeholder="Name"
                     />
                   </div>
-                  <div className="6u 12u(xsmall)">
+                  <div class="6u 12u(xsmall)">
                     <input
                       type="email"
                       name="demo-email"
@@ -572,8 +572,8 @@ const Projects = props => (
                       placeholder="Email"
                     />
                   </div>
-                  <div className="12u">
-                    <div className="select-wrapper">
+                  <div class="12u">
+                    <div class="select-wrapper">
                       <select name="demo-category" id="demo-category">
                         <option value="">- Category -</option>
                         <option value="1">Manufacturing</option>
@@ -583,7 +583,7 @@ const Projects = props => (
                       </select>
                     </div>
                   </div>
-                  <div className="4u 12u(small)">
+                  <div class="4u 12u(small)">
                     <input
                       type="radio"
                       id="demo-priority-low"
@@ -592,7 +592,7 @@ const Projects = props => (
                     />
                     <label htmlFor="demo-priority-low">Low</label>
                   </div>
-                  <div className="4u 12u(small)">
+                  <div class="4u 12u(small)">
                     <input
                       type="radio"
                       id="demo-priority-normal"
@@ -600,7 +600,7 @@ const Projects = props => (
                     />
                     <label htmlFor="demo-priority-normal">Normal</label>
                   </div>
-                  <div className="4u 12u(small)">
+                  <div class="4u 12u(small)">
                     <input
                       type="radio"
                       id="demo-priority-high"
@@ -608,11 +608,11 @@ const Projects = props => (
                     />
                     <label htmlFor="demo-priority-high">High</label>
                   </div>
-                  <div className="6u 12u(small)">
+                  <div class="6u 12u(small)">
                     <input type="checkbox" id="demo-copy" name="demo-copy" />
                     <label htmlFor="demo-copy">Email me a copy</label>
                   </div>
-                  <div className="6u 12u(small)">
+                  <div class="6u 12u(small)">
                     <input
                       type="checkbox"
                       id="demo-human"
@@ -621,7 +621,7 @@ const Projects = props => (
                     />
                     <label htmlFor="demo-human">I am a human</label>
                   </div>
-                  <div className="12u">
+                  <div class="12u">
                     <textarea
                       name="demo-message"
                       id="demo-message"
@@ -629,13 +629,13 @@ const Projects = props => (
                       rows="6"
                     />
                   </div>
-                  <div className="12u">
-                    <ul className="actions">
+                  <div class="12u">
+                    <ul class="actions">
                       <li>
                         <input
                           type="submit"
                           value="Send Message"
-                          className="special"
+                          class="special"
                         />
                       </li>
                       <li>
@@ -649,53 +649,53 @@ const Projects = props => (
               <h3>Image</h3>
 
               <h4>Fit</h4>
-              <span className="image fit">
+              <span class="image fit">
                 <img src={pic03} alt="" />
               </span>
-              <div className="box alt">
-                <div className="row 50% uniform">
-                  <div className="4u">
-                    <span className="image fit">
+              <div class="box alt">
+                <div class="row 50% uniform">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic08} alt="" />
                     </span>
                   </div>
-                  <div className="4u">
-                    <span className="image fit">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic09} alt="" />
                     </span>
                   </div>
-                  <div className="4u">
-                    <span className="image fit">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic10} alt="" />
                     </span>
                   </div>
-                  <div className="4u">
-                    <span className="image fit">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic10} alt="" />
                     </span>
                   </div>
-                  <div className="4u">
-                    <span className="image fit">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic08} alt="" />
                     </span>
                   </div>
-                  <div className="4u">
-                    <span className="image fit">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic09} alt="" />
                     </span>
                   </div>
-                  <div className="4u">
-                    <span className="image fit">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic09} alt="" />
                     </span>
                   </div>
-                  <div className="4u">
-                    <span className="image fit">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic10} alt="" />
                     </span>
                   </div>
-                  <div className="4u">
-                    <span className="image fit">
+                  <div class="4u">
+                    <span class="image fit">
                       <img src={pic08} alt="" />
                     </span>
                   </div>
@@ -704,7 +704,7 @@ const Projects = props => (
 
               <h4>Left &amp; Right</h4>
               <p>
-                <span className="image left">
+                <span class="image left">
                   <img src={pic09} alt="" />
                 </span>Lorem ipsum dolor sit accumsan interdum nisi, quis
                 tincidunt felis sagittis eget. tempus euismod. Vestibulum ante
@@ -719,7 +719,7 @@ const Projects = props => (
                 faucibus magna blandit adipiscing eu felis iaculis.
               </p>
               <p>
-                <span className="image right">
+                <span class="image right">
                   <img src={pic10} alt="" />
                 </span>Lorem ipsum dolor sit accumsan interdum nisi, quis
                 tincidunt felis sagittis eget. tempus euismod. Vestibulum ante
@@ -735,7 +735,7 @@ const Projects = props => (
               </p>
 
               <h3>Box</h3>
-              <div className="box">
+              <div class="box">
                 <p>
                   Felis sagittis eget tempus primis in faucibus vestibulum.
                   Blandit adipiscing eu felis iaculis volutpat ac adipiscing

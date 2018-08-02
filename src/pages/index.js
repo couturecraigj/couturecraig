@@ -20,11 +20,11 @@ class HomeIndex extends React.Component {
   render() {
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteDescription = this.props.data.site.siteMetadata.description
-    const edgesNodes = get(this.props, 'data.allMarkdownRemark.edges', [])
+    const edgesNodes = get(this.props, 'data.allWordpressPost.edges', [])
       .filter(edge => {
         if (
           process.env.NODE_ENV === 'production' &&
-          edge.node.frontmatter.draft === true
+          edge.node.status !== 'publish'
         ) {
           return false
         }
@@ -45,20 +45,21 @@ class HomeIndex extends React.Component {
           <section id="one" className="tiles">
             {edgesNodes.map(node => (
               <article
-                key={node.frontmatter.path}
+                key={node.slug}
                 style={{
                   backgroundImage: `url(${get(
                     node,
-                    'frontmatter.mainImg.childImageSharp.resize.src'
-                  , get(this.props.data, 'defaultImage.resize.src'))})`
+                    'featured_media.localFile.childImageSharp.resize.src',
+                    get(this.props.data, 'defaultImage.resize.src')
+                  )})`,
                 }}
               >
                 <header className="major">
-                  <h3>{node.frontmatter.title}</h3>
-                  <p>{node.excerpt}</p>
+                  <h3>{node.title}</h3>
+                  <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
                 </header>
                 <Link
-                  to={`/post${node.frontmatter.path}`}
+                  to={`/${node.date}/${node.slug}`}
                   className="link primary"
                 />
               </article>
@@ -117,43 +118,26 @@ export const pageQuery = graphql`
         src
       }
     }
-    allMarkdownRemark(
-      limit: 6
-      sort: { fields: [frontmatter___date], order: DESC }
+    allWordpressPost(
+      filter: { status: { eq: "publish" } }
+      sort: { fields: [date], order: DESC }
     ) {
       edges {
         node {
-          excerpt(pruneLength: 250)
-          html
-          frontmatter {
-            draft
-            mainImg {
+          slug
+          date(formatString: "YYYY/MM/DD")
+          title
+          excerpt
+          content
+          status
+          featured_media {
+            localFile {
               childImageSharp {
-                resize(height: 500, cropFocus: ATTENTION, width: 1000) {
+                resize(height: 500, cropFocus: NORTH, width: 1000) {
                   src
-                }
-                responsiveSizes(maxWidth: 1000) {
-                  src
-                  srcSet
-                  sizes
-                }
-                sizes(
-                  traceSVG: {
-                    color: "#8d82c4"
-                    turnPolicy: TURNPOLICY_MINORITY
-                    blackOnWhite: false
-                  }
-                  maxWidth: 1000
-                  # height: 500
-                  cropFocus: ATTENTION
-                  toFormat: PNG
-                ) {
-                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
                 }
               }
             }
-            path
-            title
           }
         }
       }

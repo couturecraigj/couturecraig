@@ -6,20 +6,20 @@ import get from 'lodash/get'
 import has from 'lodash/has'
 
 const BlogPostTemplate = props => {
-  const post = props.data.markdownRemark
+  const post = props.data.wordpressPost
   const siteTitle = get(props, 'data.site.siteMetadata.title')
   const author = get(
     props,
-    'data.markdownRemark.frontmatter.author',
+    'data.wordpressPost.author',
     get(props, 'data.site.siteMetadata.author', 'Craig Couture')
   )
-  const keywords = get(props, 'data.markdownRemark.frontmatter.keywords', [])
+  const keywords = get(props, 'data.wordpressPost.keywords', [])
   return (
     <div>
       <Helmet>
-        <title>{post.frontmatter.title}</title>
+        <title>{post.title}</title>
         <meta name="description" content={post.excerpt} />
-        <meta name="author" content={author} />
+        <meta name="author" content={get(author, 'name')} />
         <meta name="keywords" content={keywords} />
       </Helmet>
 
@@ -27,18 +27,22 @@ const BlogPostTemplate = props => {
         <section id="one">
           <div className="inner">
             <header className="major">
-              <h1>{post.frontmatter.title}</h1>
+              <h1>{post.title}</h1>
             </header>
-            {(
-              <span className="image main">
-                <Img
-                  sizes={get(post, 'frontmatter.mainImg.childImageSharp.sizes', get(props.data, 'sizes.sizes'))}
-                  alt=""
-                />
-              </span>
-            )}
-            <h4>{post.frontmatter.date}</h4>
-            <div dangerouslySetInnerHTML={{ __html: post.html }} />
+            <span className="image main">
+              <Img
+                sizes={get(
+                  post,
+                  'featured_media.localFile.childImageSharp.sizes',
+                  get(props.data, 'sizes.sizes')
+                )}
+                alt=""
+              />
+            </span>
+            <h4>{post.date}</h4>
+            <hr />
+            <h5>{get(author, 'name')}</h5>
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
         </section>
       </div>
@@ -49,23 +53,18 @@ const BlogPostTemplate = props => {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
+  query BlogPostByPath($slug: String!) {
     sizes: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
       sizes(
         traceSVG: {
           color: "#8d82c4"
+          background: "#252a43"
           turnPolicy: TURNPOLICY_MINORITY
           blackOnWhite: false
-        },
+        }
         toFormat: PNG
       ) {
-          tracedSVG
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
+        ...GatsbyImageSharpSizes_withWebp_tracedSVG
       }
     }
     site {
@@ -74,33 +73,31 @@ export const pageQuery = graphql`
         author
       }
     }
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      id
-      excerpt(pruneLength: 250)
-      html
-      frontmatter {
-        title
-        author
-        keywords
-        mainImg {
+    wordpressPost(slug: { eq: $slug }) {
+      excerpt
+      title
+      content
+      date(formatString: "MM.DD.YY")
+      author {
+        name
+      }
+      featured_media {
+        localFile {
           childImageSharp {
-            resize(width: 1500) {
-              src
-            }
             sizes(
+              cropFocus: ENTROPY
+              maxWidth: 1000
               traceSVG: {
                 color: "#8d82c4"
+                background: "#333856"
                 turnPolicy: TURNPOLICY_MINORITY
                 blackOnWhite: false
               }
-              cropFocus: ATTENTION
-              toFormat: PNG
             ) {
               ...GatsbyImageSharpSizes_withWebp_tracedSVG
             }
           }
         }
-        date(formatString: "MMMM DD, YYYY")
       }
     }
   }

@@ -64,7 +64,8 @@ const Pagination = ({ index, pageCount, group }) => {
   )
 }
 
-const Blog = (props) => {
+const BlogListTemplate = props => {
+  console.log(props)
   const { data, pathContext } = props
   const { group = [], index = 1, first, last, pageCount = 1 } = pathContext
   const previousUrl = index - 1 == 1 ? '' : (index - 1).toString()
@@ -85,39 +86,34 @@ const Blog = (props) => {
         <section id="two" className="spotlights">
           {group.length ? (
             group.map(({ node }) => (
-              <section key={node.frontmatter.path}>
-                <Link to={`/post${node.frontmatter.path}`} className="image">
-                  {has(node, 'frontmatter.mainImg.childImageSharp.sizes') ? (
+              <section key={node.slug}>
+                <Link to={`/${node.date}/${node.slug}`} className="image">
+                  {has(
+                    node,
+                    'featured_media.localFile.childImageSharp.sizes'
+                  ) ? (
                     <Img
                       sizes={get(
                         node,
-                        'frontmatter.mainImg.childImageSharp.sizes'
+                        'featured_media.localFile.childImageSharp.sizes'
                       )}
                       alt=""
                     />
-                  ) : ( null
-                    /* <Img
-                      sizes={get(
-                        node,
-                        'frontmatter.mainImg.childImageSharp.sizes'
-                      )}
-                      alt=""
-                    /> */
-                  )}
+                  ) : null}
                 </Link>
                 <div className="content">
                   <div className="inner">
                     <header className="major">
-                      <h3>{node.frontmatter.title}</h3>
+                      <h3>{node.title}</h3>
                     </header>
-                    <p>{node.excerpt}</p>
+                    <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
                     <ul className="actions">
                       <li>
                         <Link
-                          to={`/post${node.frontmatter.path}`}
+                          to={`/${node.date}/${node.slug}`}
                           className="button"
                         >
-                          Learn more
+                          READ ON
                         </Link>
                       </li>
                     </ul>
@@ -145,4 +141,4 @@ const Blog = (props) => {
   )
 }
 
-export default Blog
+export default BlogListTemplate

@@ -5,163 +5,190 @@ const select = require(`unist-util-select`)
 const createPaginatedPages = require('gatsby-paginate')
 const fs = require(`fs-extra`)
 
+const devMode = process.env.NODE_ENV !== 'production'
+
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
   // pexels-photo-132340
-  let query = `
-  {
-    sizes: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
-      sizes(
-        traceSVG: {
-          color: "#8d82c4"
-          turnPolicy: TURNPOLICY_MINORITY
-          blackOnWhite: false
-        },
-        toFormat: PNG
-      ) {
-          tracedSVG
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-      }
-    }
-    allMarkdownRemark(limit: 1000, sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt(pruneLength: 250)
-          frontmatter {
-            path
-            title
-            draft
-            mainImg{
-              childImageSharp {
-                resize(width: 1500) {
-                  src
+  query = `
+      {
+        defaultSharp: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
+          sizes(
+            traceSVG: {
+              color: "#8d82c4"
+              turnPolicy: TURNPOLICY_MINORITY
+              blackOnWhite: false
+            }
+            cropFocus: ATTENTION
+            maxWidth: 1000
+            toFormat: PNG
+          ) {
+            tracedSVG
+            aspectRatio
+            src
+            srcSet
+            srcWebp
+            srcSetWebp
+            sizes
+          }
+        }
+        allWordpressPage ${
+          devMode ? '' : `(filter: { status: { eq: "publish" } })`
+        } {
+          edges {
+            node {
+              slug
+              title
+              excerpt
+              content
+              featured_media {
+                localFile {
+                  childImageSharp {
+                    sizes(
+                      traceSVG: {
+                        color: "#8d82c4"
+                        background: "#252a43"
+                        turnPolicy: TURNPOLICY_MINORITY
+                        blackOnWhite: false
+                      }
+                      cropFocus: ATTENTION
+                      maxWidth: 1000
+                      toFormat: PNG
+                    ) {
+                      tracedSVG
+                      aspectRatio
+                      src
+                      srcSet
+                      srcWebp
+                      srcSetWebp
+                      sizes
+                    }
+                  }
                 }
-                sizes(
-                  traceSVG: {
-                    color: "#8d82c4"
-                    turnPolicy: TURNPOLICY_MINORITY
-                    blackOnWhite: false
-                  },
-                  toFormat: PNG,
-                ) {
-                  tracedSVG
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  sizes
+              }
+            }
+          }
+        }
+        allWordpressPost
+        (
+          ${
+            devMode
+              ? `sort: { fields: [date], order: DESC }`
+              : `filter: { status: { eq: "publish" } }
+        sort: { fields: [date], order: DESC }`
+          }
+          ) {
+          edges {
+            node {
+              date(formatString: "YYYY/MM/DD")
+              slug
+              title
+              excerpt
+              content
+              featured_media {
+                localFile {
+                  childImageSharp {
+                    sizes(
+                      traceSVG: {
+                        color: "#8d82c4"
+                        background: "#252a43"
+                        turnPolicy: TURNPOLICY_MINORITY
+                        blackOnWhite: false
+                      }
+                      cropFocus: ATTENTION
+                      maxWidth: 1000
+                      toFormat: PNG
+                    ) {
+                      tracedSVG
+                      aspectRatio
+                      src
+                      srcSet
+                      srcWebp
+                      srcSetWebp
+                      sizes
+                    }
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-  }
-`
-  if (process.env.NODE_ENV === 'production') {
-    query = `
-  {
-    sizes: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
-      sizes(
-        traceSVG: {
-          color: "#8d82c4"
-          turnPolicy: TURNPOLICY_MINORITY
-          blackOnWhite: false
-        },
-        toFormat: PNG
-      ) {
-          tracedSVG
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-          sizes
-      }
-    }
-    allMarkdownRemark(limit: 1000,
-      sort: { fields: [frontmatter___date], order: DESC },
-      filter: { frontmatter: { draft: { eq: false }}}) {
-      edges {
-        node {
-          excerpt(pruneLength: 250)
-          frontmatter {
-            path
-            title
-            draft
-            mainImg{
-              childImageSharp {
-                resize {
-                  src
-                }
-                sizes(
-                  traceSVG: {
-                    color: "#8d82c4"
-                    turnPolicy: TURNPOLICY_MINORITY
-                    blackOnWhite: false
-                  },
-                  toFormat: PNG
-                ) {
-                  tracedSVG
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  sizes
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-  }
+    `
+
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
+    const postTemplate = path.resolve('./src/templates/blog-post.js')
     const blogPageList = path.resolve('./src/templates/blog-list.js')
+    const landingByPathTemplate = path.resolve(
+      './src/templates/landing-by-path.js'
+    )
     resolve(
       graphql(query).then(result => {
         if (result.errors) {
           console.log(result.errors)
           reject(result.errors)
         }
-        if (_.get(result, 'data.allMarkdownRemark.edges', []).length === 0) {
+
+        // Create blog posts pages.
+        _.each(_.get(result, 'data.allWordpressPage.edges', []), edge => {
+          console.log(edge.node.slug)
+          createPage({
+            path: edge.node.slug.startsWith('wants-to')
+              ? `/${edge.node.slug}`.replace(/-/g, '/')
+              : `/${edge.node.slug}`,
+            mainImg: _.get(edge, 'node.featured_media.localFile'),
+            component: landingByPathTemplate,
+            context: {
+              slug: edge.node.slug,
+              mainImg: _.get(edge, 'node.featured_media.localFile'),
+            },
+          })
+        })
+        if (_.get(result, 'data.allWordpressPost.edges', []).length === 0) {
           createPage({
             path: `/blog/`,
             component: blogPageList,
           })
         } else {
+          // console.log(_.get(result, 'data.defaultSharp'))
           createPaginatedPages({
-            edges: _.get(result, 'data.allMarkdownRemark.edges', []).map(
+            edges: _.get(result, 'data.allWordpressPost.edges', []).map(
               edge =>
-                _.has(edge, 'node.frontmatter.mainImg.childImageSharp.sizes')
+                _.has(
+                  edge,
+                  'node.featured_media.localFile.childImageSharp.sizes'
+                )
                   ? edge
                   : Object.assign({}, edge, {
-                    node: Object.assign({}, _.get(edge, 'node', {}), {
-                      frontmatter: Object.assign({}, _.get(edge, 'node.frontmatter', {}), {
-                        mainImg: Object.assign({}, _.get(edge, 'node.frontmatter.mainImage', {}), {
-                          childImageSharp: Object.assign({}, _.get(edge, 'node.frontmatter.mainImage.childImageSharp', {}), {
-                            sizes: _.get(result, 'data.sizes.sizes')
-                          })
-                        })
-                      })
+                      node: Object.assign({}, _.get(edge, 'node', {}), {
+                        featured_media: Object.assign(
+                          {},
+                          _.get(edge, 'node.featured_media', {}),
+                          {
+                            localFile: Object.assign(
+                              {},
+                              _.get(edge, 'node.featured_media.localFile', {}),
+                              {
+                                childImageSharp: Object.assign(
+                                  {},
+                                  _.get(
+                                    edge,
+                                    'node.featured_media.localFile.childImageSharp',
+                                    _.get(result, 'data.defaultSharp')
+                                  )
+                                ),
+                              }
+                            ),
+                          }
+                        ),
+                        frontmatter: Object.assign({}, _.get(edge, 'node', {})),
+                      }),
                     })
-                  })
             ),
             createPage: createPage,
-            pageTemplate: './src/templates/blog-list.js',
+            pageTemplate: blogPageList,
             context: {
-              sizes: _.get(result, 'data.sizes.sizes'),
+              sizes: _.get(result, 'data.defaultSharp.sizes'),
             },
             // pageLength: 5, // This is optional and defaults to 10 if not used
             pathPrefix: 'blog',
@@ -169,14 +196,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
 
         // Create blog posts pages.
-        _.each(_.get(result, 'data.allMarkdownRemark.edges', []), edge => {
+        _.each(_.get(result, 'data.allWordpressPost.edges', []), edge => {
+          // console.log(edge)
           createPage({
-            path: `/post${edge.node.frontmatter.path}`,
-            mainImg: edge.node.frontmatter.mainImg,
-            component: blogPost,
+            path: `/${edge.node.date}/${edge.node.slug}`,
+            mainImg: _.get(edge, 'node.featured_media.localFile'),
+            component: postTemplate,
             context: {
-              path: edge.node.frontmatter.path,
-              mainImg: edge.node.frontmatter.mainImg,
+              slug: edge.node.slug,
+              mainImg: _.get(edge, 'node.featured_media.localFile'),
             },
           })
         })

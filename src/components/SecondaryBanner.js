@@ -8,9 +8,10 @@ const SecondaryBanner = props => (
       <header className="major">
         <h1>{props.title}</h1>
       </header>
-      <div className="content">
-        <p>{props.description}</p>
-      </div>
+      <div
+        className="content"
+        dangerouslySetInnerHTML={{ __html: props.description }}
+      />
     </div>
   </section>
 )
