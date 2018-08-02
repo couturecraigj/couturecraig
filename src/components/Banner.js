@@ -6,14 +6,14 @@ const { interpolate } = transform
 const config = {
   draggable: true,
   initialPose: 'closed',
-  attention: {
-    scale: 1.3,
-    transition: {
-      type: 'spring',
-      stiffness: 200,
-      damping: 0,
-    },
-  },
+  // attention: {
+  //   scale: 1.3,
+  //   transition: {
+  //     type: 'spring',
+  //     stiffness: 200,
+  //     damping: 0,
+  //   },
+  // },
   passive: {
     opacity: ['x', interpolate([-800, -200, 200, 800], [0, 1, 1, 0])],
   },

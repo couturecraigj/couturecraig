@@ -191,5 +191,6 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
     },
     `gatsby-plugin-offline`,
+    'gatsby-plugin-netlify-cache',
   ],
 }
