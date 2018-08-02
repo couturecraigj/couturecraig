@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
 import '../assets/scss/main.scss'
 import Header from '../components/Header'
 import Helmet from 'react-helmet'
@@ -46,8 +47,13 @@ class Template extends React.Component {
         }`}
       >
         {/* <BgImage sizes={this.props.data.sizes.sizes} /> */}
-        <Helmet titleTemplate={`%s | ${this.props.data.site.siteMetadata.title}`}>
-          <meta name="description" content={this.props.data.site.siteMetadata.description} />
+        <Helmet
+          titleTemplate={`%s | ${this.props.data.site.siteMetadata.title}`}
+        >
+          <meta
+            name="description"
+            content={this.props.data.site.siteMetadata.description}
+          />
         </Helmet>
         <div id="wrapper">
           <Header onToggleMenu={this.handleToggleMenu} />
@@ -62,7 +68,7 @@ class Template extends React.Component {
 }
 
 Template.propTypes = {
-  children: React.PropTypes.func,
+  children: PropTypes.func,
 }
 
 export default Template
@@ -81,10 +87,10 @@ export const pageQuery = graphql`
           color: "#8d82c4"
           turnPolicy: TURNPOLICY_MINORITY
           blackOnWhite: false
-        },
+        }
         toFormat: PNG
       ) {
-          ...GatsbyImageSharpSizes_withWebp_tracedSVG
+        ...GatsbyImageSharpSizes_withWebp_tracedSVG
       }
     }
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
 
 const Menu = props => (
   <nav id="menu">
@@ -36,7 +37,7 @@ const Menu = props => (
 )
 
 Menu.propTypes = {
-  onToggleMenu: React.PropTypes.func,
+  onToggleMenu: PropTypes.func,
 }
 
 export default Menu

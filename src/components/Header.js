@@ -1,5 +1,6 @@
-import React from 'react';
-import Link from 'gatsby-link';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 
 const Header = props => (
   <header id="header" className="alt">
@@ -12,10 +13,10 @@ const Header = props => (
       </a>
     </nav>
   </header>
-);
+)
 
 Header.propTypes = {
-  onToggleMenu: React.PropTypes.func
-};
+  onToggleMenu: PropTypes.func,
+}
 
-export default Header;
+export default Header
