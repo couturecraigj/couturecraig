@@ -66,5 +66,6 @@
     transition: background-size 0.25s ease-in;
     &:hover {
         background-size: 100% 88%;
+        text-shadow: -1px -1px 0 #012429, 1px -1px 0 #012429, -1px 1px 0 #012429, 1px 1px 0 #012429;
     }
 }
