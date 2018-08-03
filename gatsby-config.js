@@ -146,43 +146,48 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
+            query: `
+            {
+              allWordpressPost
+        (
+          ${
+            devMode
+              ? `sort: { fields: [date], order: DESC }`
+              : `filter: { status: { eq: "publish" } }
+        sort: { fields: [date], order: DESC }`
+          }
+          ) {
+          edges {
+            node {
+              date(formatString: "YYYY/MM/DD")
+              slug
+              title
+              excerpt
+              content
+            }
+          }
+        }
+      }
+            `,
+            serialize: ({ query: { site, allWordpressPost } }) => {
+              return allWordpressPost.edges.map(edge => {
+                // console.log(edge, site)
                 const path = (
                   site.siteMetadata.siteUrl +
-                  '/post' +
-                  edge.node.frontmatter.path
+                  '/' +
+                  edge.node.date +
+                  '/' +
+                  edge.node.slug
                 ).replace(/([^:])\/(\/)/g, '$1$2')
                 console.log(path)
-                return Object.assign({}, edge.node.frontmatter, {
+                return Object.assign({}, edge.node, {
                   description: edge.node.excerpt,
                   url: path,
                   guid: path,
-                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                  custom_elements: [{ 'content:encoded': edge.node.content }],
                 })
               })
             },
-            query: `
-              {
-                allMarkdownRemark(
-                  limit: 1000,
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                  filter: {frontmatter: { draft: { ne: true } }}
-                ) {
-                  edges {
-                    node {
-                      excerpt
-                      html
-                      frontmatter {
-                        title
-                        date
-                        path
-                      }
-                    }
-                  }
-                }
-              }
-            `,
             output: '/rss.xml',
           },
         ],
