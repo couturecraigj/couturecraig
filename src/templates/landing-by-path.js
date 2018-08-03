@@ -21,6 +21,7 @@ const structuredData = `{
 const LandingByPath = props => {
   // Some Reason if this is removed it is firing an error.
   if (!props.data) return null
+  console.log(props.pathContext.style)
   return (
     <div>
       <Helmet>
@@ -34,7 +35,7 @@ const LandingByPath = props => {
       </Helmet>
       <SecondaryBanner
         title={props.data.wordpressPage.title}
-        style={1}
+        style={props.pathContext.style || 1}
         description={props.data.wordpressPage.excerpt}
       />
       <div id="main" className="alt">

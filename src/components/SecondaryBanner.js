@@ -3,7 +3,7 @@ import BgImage from './BgImage'
 import Attention from './Attention'
 
 const SecondaryBanner = props => (
-  <section id="banner" className={`style${props.style || 2}`}>
+  <section id="banner" className={`style${props.style || 1}`}>
     {/* <BgImage /> */}
     <Attention className="inner">
       <header className="major">

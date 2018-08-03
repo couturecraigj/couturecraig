@@ -130,20 +130,24 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
 
         // Create blog posts pages.
-        _.each(_.get(result, 'data.allWordpressPage.edges', []), edge => {
-          console.log(edge.node.slug)
-          createPage({
-            path: edge.node.slug.startsWith('wants-to')
-              ? `/${edge.node.slug}`.replace(/-/g, '/')
-              : `/${edge.node.slug}`,
-            mainImg: _.get(edge, 'node.featured_media.localFile'),
-            component: landingByPathTemplate,
-            context: {
-              slug: edge.node.slug,
+        _.each(
+          _.get(result, 'data.allWordpressPage.edges', []),
+          (edge, index) => {
+            console.log(edge.node.slug)
+            createPage({
+              path: edge.node.slug.startsWith('wants-to')
+                ? `/${edge.node.slug}`.replace(/-/g, '/')
+                : `/${edge.node.slug}`,
               mainImg: _.get(edge, 'node.featured_media.localFile'),
-            },
-          })
-        })
+              component: landingByPathTemplate,
+              context: {
+                slug: edge.node.slug,
+                style: ((index + 1) % 6) + 1,
+                mainImg: _.get(edge, 'node.featured_media.localFile'),
+              },
+            })
+          }
+        )
         if (_.get(result, 'data.allWordpressPost.edges', []).length === 0) {
           createPage({
             path: `/blog/`,
@@ -196,18 +200,21 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
 
         // Create blog posts pages.
-        _.each(_.get(result, 'data.allWordpressPost.edges', []), edge => {
-          // console.log(edge)
-          createPage({
-            path: `/${edge.node.date}/${edge.node.slug}`,
-            mainImg: _.get(edge, 'node.featured_media.localFile'),
-            component: postTemplate,
-            context: {
-              slug: edge.node.slug,
+        _.each(
+          _.get(result, 'data.allWordpressPost.edges', []),
+          (edge, index) => {
+            // console.log(edge)
+            createPage({
+              path: `/${edge.node.date}/${edge.node.slug}`,
               mainImg: _.get(edge, 'node.featured_media.localFile'),
-            },
-          })
-        })
+              component: postTemplate,
+              context: {
+                slug: edge.node.slug,
+                mainImg: _.get(edge, 'node.featured_media.localFile'),
+              },
+            })
+          }
+        )
       })
     )
   })
