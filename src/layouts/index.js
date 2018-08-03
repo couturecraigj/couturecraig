@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import '../assets/scss/main.scss'
+import '../assets/css/index.css'
+import './magical-underline'
 import Header from '../components/Header'
 import Helmet from 'react-helmet'
 import Menu from '../components/Menu'
@@ -54,6 +56,7 @@ class Template extends React.Component {
             name="description"
             content={this.props.data.site.siteMetadata.description}
           />
+          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         </Helmet>
         <div id="wrapper">
           <Header onToggleMenu={this.handleToggleMenu} />

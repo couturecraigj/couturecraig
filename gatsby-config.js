@@ -22,6 +22,7 @@ module.exports = {
   },
   pathPrefix: '/',
   plugins: [
+    // 'gatsby-plugin-extract-schema',
     `gatsby-plugin-react-next`,
     {
       resolve: `gatsby-source-filesystem`,

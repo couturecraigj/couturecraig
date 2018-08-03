@@ -1,10 +1,11 @@
 import React from 'react'
 import BgImage from './BgImage'
+import Attention from './Attention'
 
 const SecondaryBanner = props => (
   <section id="banner" className={`style${props.style || 2}`}>
     {/* <BgImage /> */}
-    <div className="inner">
+    <Attention className="inner">
       <header className="major">
         <h1>{props.title}</h1>
       </header>
@@ -12,7 +13,7 @@ const SecondaryBanner = props => (
         className="content"
         dangerouslySetInnerHTML={{ __html: props.description }}
       />
-    </div>
+    </Attention>
   </section>
 )
 

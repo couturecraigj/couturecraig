@@ -32,7 +32,10 @@ const Contact = props => (
           <div className="contact-method">
             <span className="icon alt fa-envelope" />
             <h3>Email</h3>
-            <a href={`mailto:couturecraigj@gmail.com`}>
+            <a
+              href={`mailto:couturecraigj@gmail.com`}
+              className="underline--magical"
+            >
               couturecraigj@gmail.com
             </a>
           </div>
@@ -41,7 +44,9 @@ const Contact = props => (
           <div className="contact-method">
             <span className="icon alt fa-phone" />
             <h3>Phone</h3>
-            <span>(802) 387-0237 (Google Voice)</span>
+            <a href="tel:1-802-387-0237" className="underline--magical">
+              (802) 387-0237 (Google Voice)
+            </a>
           </div>
         </section>
         <section>
@@ -58,6 +63,6 @@ const Contact = props => (
       </section>
     </div>
   </section>
-);
+)
 
-export default Contact;
+export default Contact
