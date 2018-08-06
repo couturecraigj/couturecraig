@@ -25,7 +25,8 @@
     top: -3.25em;
     & strong {
         background-color: #ffffff;
-        color: #242943;
+        color: #242943; // color: #000;
+        mix-blend-mode: multiply;
         display: inline-block;
         line-height: 1.25em;
         margin-right: 0.5em;

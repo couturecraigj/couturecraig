@@ -69,3 +69,41 @@
         text-shadow: -1px -1px 0 #012429, 1px -1px 0 #012429, -1px 1px 0 #012429, 1px 1px 0 #012429;
     }
 }
+
+
+/* #main .inner h1 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    &:after,
+    &:before {
+        content: "";
+        border: solid gray;
+        border-width: .05em 0;
+        height: .15em;
+        margin: .2em;
+        flex: 1;
+    }
+}
+
+#main.inner h2,
+h3,
+h4,
+h5 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-style: italic;
+    border: solid gray;
+    border-width: .05em 0 .05em 0;
+    &:after {
+        content: "";
+        height: .0em;
+        margin: .2em;
+        flex: 1;
+    }
+    &:before {
+        content: "§";
+        transform: rotate(90deg);
+    }
+} */

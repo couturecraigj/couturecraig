@@ -179,7 +179,6 @@ module.exports = {
                   '/' +
                   edge.node.slug
                 ).replace(/([^:])\/(\/)/g, '$1$2')
-                console.log(path)
                 return Object.assign({}, edge.node, {
                   description: edge.node.excerpt,
                   url: path,
