@@ -4,7 +4,7 @@ const Contact = props => (
   <section id="contact">
     <div className="inner">
       <section>
-        <form method="post" action="/contact">
+        <form method="post" netlify action="/contact">
           <div className="field half first">
             <label htmlFor="name">Name</label>
             <input type="text" name="name" id="name" />
@@ -54,8 +54,10 @@ const Contact = props => (
             <span className="icon alt fa-home" />
             <h3>Address</h3>
             <span>
-              442 Pako Ave.<br />
-              Keene, NH 03431<br />
+              442 Pako Ave.
+              <br />
+              Keene, NH 03431
+              <br />
               United States of America
             </span>
           </div>
