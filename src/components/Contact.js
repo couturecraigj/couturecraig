@@ -7,6 +7,7 @@ const Contact = props => (
         <form
           method="post"
           data-netlify="true"
+          action="/thanks"
           data-netlify-honeypot="bots"
           name="contact"
         >
