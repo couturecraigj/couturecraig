@@ -15,7 +15,7 @@ const Projects = props => (
           <header class="major">
             <h1>Thank you!</h1>
           </header>
-          <p>Your form submission has been received.</p>
+          <p>Your form submission has been received. 🤘🎉</p>
         </div>
       </section>
     </div>
