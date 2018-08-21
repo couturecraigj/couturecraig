@@ -8,10 +8,16 @@ const Contact = props => (
           method="post"
           data-netlify="true"
           action="/thanks"
-          data-netlify-honeypot="bots"
+          data-netlify-honeypot="bot-field"
           name="contact"
         >
           <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>
+              <label htmlFor="bot-field">Don’t fill this out</label>
+              <input name="bot-field" id="bot-field" />
+            </label>
+          </p>
           <div className="field half first">
             <label htmlFor="name">Name</label>
             <input type="text" name="name" id="name" />
