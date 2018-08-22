@@ -14,7 +14,7 @@ const Contact = props => (
           <input type="hidden" name="form-name" value="contact" />
           <p hidden>
             <label>
-              <label htmlFor="bot-field">Don’t fill this out</label>
+              Don’t fill this out
               <input name="bot-field" id="bot-field" />
             </label>
           </p>
