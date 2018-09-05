@@ -104,7 +104,7 @@ const BlogListTemplate = props => {
                 <div className="content">
                   <div className="inner">
                     <header className="major">
-                      <h3>{node.title}</h3>
+                      <h3 dangerouslySetInnerHTML={{ __html: node.title }} />
                     </header>
                     <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
                     <ul className="actions">
