@@ -55,7 +55,7 @@ class HomeIndex extends React.Component {
                 }}
               >
                 <header className="major">
-                  <h3>{node.title}</h3>
+                  <h3 dangerouslySetInnerHTML={{ __html: node.title }} />
                   <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
                 </header>
                 <Link
