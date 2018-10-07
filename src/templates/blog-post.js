@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import Layout from '../components/Layout'
+import { sterilizeText } from '../utils/wordpress-helpers'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
@@ -20,7 +21,7 @@ const BlogPostTemplate = props => {
     <Layout>
       <div>
         <Helmet>
-          <title dangerouslySetInnerHTML={{ __html: post.title }} />
+          <title>{sterilizeText(post.title)}</title>
           <meta name="description" content={post.excerpt} />
           <meta name="author" content={get(author, 'name')} />
           <meta name="keywords" content={keywords} />
