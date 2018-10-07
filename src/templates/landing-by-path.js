@@ -46,6 +46,7 @@ const LandingByPath = props => {
             {has(props, 'data.wordpressPage.featured_media.localFile') && (
               <div className="inner">
                 <Img
+                  backgroundColor="#8d82c4"
                   fluid={get(
                     props,
                     'data.wordpressPage.featured_media.localFile.childImageSharp.fluid'
