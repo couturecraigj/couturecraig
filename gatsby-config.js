@@ -24,13 +24,13 @@ module.exports = {
   plugins: [
     // 'gatsby-plugin-extract-schema',
     // `gatsby-plugin-react-next`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/posts`,
-        name: 'posts',
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/src/posts`,
+    //     name: 'posts',
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
