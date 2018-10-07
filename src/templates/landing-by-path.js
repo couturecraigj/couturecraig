@@ -77,7 +77,7 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(
               cropFocus: ENTROPY
-              maxWidth: 1000
+              maxWidth: 1400
               traceSVG: {
                 color: "#8d82c4"
                 background: "#333856"

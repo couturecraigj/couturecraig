@@ -20,7 +20,7 @@ const BlogPostTemplate = props => {
     <Layout>
       <div>
         <Helmet>
-          <title>{post.title}</title>
+          <title dangerouslySetInnerHTML={{ __html: post.title }} />
           <meta name="description" content={post.excerpt} />
           <meta name="author" content={get(author, 'name')} />
           <meta name="keywords" content={keywords} />
@@ -30,7 +30,7 @@ const BlogPostTemplate = props => {
           <section id="one">
             <div className="inner">
               <header className="major">
-                <h1>{post.title}</h1>
+                <h1 dangerouslySetInnerHTML={{ __html: post.title }} />
               </header>
               <span className="image main">
                 <Img
@@ -67,6 +67,7 @@ export const pageQuery = graphql`
           turnPolicy: TURNPOLICY_MINORITY
           blackOnWhite: false
         }
+        maxWidth: 1400
         toFormat: PNG
       ) {
         ...GatsbyImageSharpFluid_withWebp_tracedSVG
@@ -91,7 +92,7 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(
               cropFocus: ENTROPY
-              maxWidth: 1000
+              maxWidth: 1400
               quality: 100
               traceSVG: {
                 color: "#8d82c4"
