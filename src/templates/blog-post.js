@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
 import has from 'lodash/has'
@@ -54,8 +55,11 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostByPath($slug: String!) {
-    sizes: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
+    sizes: imageSharp(
+      original: { src: { regex: "/pexels-photo-132340.jpeg/" } }
+    ) {
       sizes(
+        quality: 100
         traceSVG: {
           color: "#8d82c4"
           background: "#252a43"
@@ -87,6 +91,7 @@ export const pageQuery = graphql`
             sizes(
               cropFocus: ENTROPY
               maxWidth: 1000
+              quality: 100
               traceSVG: {
                 color: "#8d82c4"
                 background: "#333856"

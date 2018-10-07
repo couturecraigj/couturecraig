@@ -1,18 +1,17 @@
 const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
-const select = require(`unist-util-select`)
 const createPaginatedPages = require('gatsby-paginate')
 const fs = require(`fs-extra`)
 
 const devMode = process.env.NODE_ENV !== 'production'
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
   // pexels-photo-132340
   query = `
       {
-        defaultSharp: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
+        defaultSharp: imageSharp(original: {src: { regex: "/pexels-photo-132340.jpeg/" }}) {
           sizes(
             traceSVG: {
               color: "#8d82c4"

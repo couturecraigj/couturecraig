@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
@@ -21,7 +22,6 @@ const structuredData = `{
 const LandingByPath = props => {
   // Some Reason if this is removed it is firing an error.
   if (!props.data) return null
-  console.log(props.pathContext.style)
   return (
     <div>
       <Helmet>
@@ -35,7 +35,7 @@ const LandingByPath = props => {
       </Helmet>
       <SecondaryBanner
         title={props.data.wordpressPage.title}
-        style={props.pathContext.style || 1}
+        style={props.pageContext.style || 1}
         description={props.data.wordpressPage.excerpt}
       />
       <div id="main" className="alt">

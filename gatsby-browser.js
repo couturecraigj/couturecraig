@@ -1,4 +1,4 @@
-import objectFitImages from 'object-fit-images'
+const objectFitImages = require('object-fit-images')
 
 exports.onInitialClientRender = () => {
   objectFitImages()

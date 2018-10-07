@@ -1,9 +1,11 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import { graphql } from 'gatsby'
 import { get } from 'lodash'
 import Helmet from 'react-helmet'
 import BgImage from '../components/BgImage'
 import Banner from '../components/Banner'
+import Layout from '../components/Layout'
 
 const structuredData = `{
   "@context": "http://schema.org",
@@ -32,67 +34,72 @@ class HomeIndex extends React.Component {
       })
       .map(({ node }) => node)
     return (
-      <div>
-        <Helmet>
-          <title>Home</title>
-          <meta name="description" content={siteDescription} />
-          <link rel="shortcut icon" href="/favicon.ico?v=1" />
-        </Helmet>
+      <Layout>
+        <div>
+          <Helmet>
+            <title>Home</title>
+            <meta name="description" content={siteDescription} />
+            <link rel="shortcut icon" href="/favicon.ico?v=1" />
+          </Helmet>
 
-        <Banner />
+          <Banner />
 
-        <div id="main">
-          <section id="one" className="tiles">
-            {edgesNodes.map(node => (
-              <article
-                key={node.slug}
-                style={{
-                  backgroundImage: `url(${get(
-                    node,
-                    'featured_media.localFile.childImageSharp.resize.src',
-                    get(this.props.data, 'defaultImage.resize.src')
-                  )})`,
-                }}
-              >
+          <div id="main">
+            <section id="one" className="tiles">
+              {edgesNodes.map(node => (
+                <article
+                  key={node.slug}
+                  style={{
+                    backgroundImage: `url(${get(
+                      node,
+                      'featured_media.localFile.childImageSharp.resize.src',
+                      get(this.props.data, 'defaultImage.resize.src')
+                    )})`,
+                  }}
+                >
+                  <header className="major">
+                    <h3 dangerouslySetInnerHTML={{ __html: node.title }} />
+                    <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                  </header>
+                  <Link
+                    to={`/${node.date}/${node.slug}`}
+                    className="link primary"
+                  />
+                </article>
+              ))}
+            </section>
+            <section id="two">
+              <div className="inner">
                 <header className="major">
-                  <h3 dangerouslySetInnerHTML={{ __html: node.title }} />
-                  <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+                  <h2>Craig Couture</h2>
                 </header>
-                <Link
-                  to={`/${node.date}/${node.slug}`}
-                  className="link primary"
-                />
-              </article>
-            ))}
-          </section>
-          <section id="two">
-            <div className="inner">
-              <header className="major">
-                <h2>Craig Couture</h2>
-              </header>
-              <h4>Software Engineer/Design enthusiast/Salesforce.com expert</h4>
-              <p>
-                I have been in this space for about 6 years now and have found a
-                nice little niche. I can build applications that fit nearly any
-                need that range from out of the box to custom built full-stack
-                developed applications. I love building backends and oddly
-                enough like building authentication. I hope you enjoy my website
-                and if there is anything you want to talk about I have added a
-                contact form at the bottom of every screen as well as additional
-                ways of contacting me in the Social section below.
-              </p>
-              <ul className="actions">
-                <li>
-                  <Link to="/blog" className="button next">
-                    Get Started
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </section>
+                <h4>
+                  Software Engineer/Design enthusiast/Salesforce.com expert
+                </h4>
+                <p>
+                  I have been in this space for about 6 years now and have found
+                  a nice little niche. I can build applications that fit nearly
+                  any need that range from out of the box to custom built
+                  full-stack developed applications. I love building backends
+                  and oddly enough like building authentication. I hope you
+                  enjoy my website and if there is anything you want to talk
+                  about I have added a contact form at the bottom of every
+                  screen as well as additional ways of contacting me in the
+                  Social section below.
+                </p>
+                <ul className="actions">
+                  <li>
+                    <Link to="/blog" className="button next">
+                      Get Started
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+          <script type="application/ld+json">{structuredData}</script>
         </div>
-        <script type="application/ld+json">{structuredData}</script>
-      </div>
+      </Layout>
     )
   }
 }
@@ -113,7 +120,9 @@ export const pageQuery = graphql`
         description
       }
     }
-    defaultImage: imageSharp(id: { regex: "/pexels-photo-132340.jpeg/" }) {
+    defaultImage: imageSharp(
+      original: { src: { regex: "/pexels-photo-132340.jpeg/" } }
+    ) {
       resize(height: 500, cropFocus: ATTENTION, width: 1000) {
         src
       }

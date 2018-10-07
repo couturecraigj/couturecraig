@@ -1,5 +1,6 @@
 import React from 'react'
 import { get, has } from 'lodash'
+import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
@@ -65,9 +66,8 @@ const Pagination = ({ index, pageCount, group }) => {
 }
 
 const BlogListTemplate = props => {
-  console.log(props)
-  const { data, pathContext } = props
-  const { group = [], index = 1, first, last, pageCount = 1 } = pathContext
+  const { data, pageContext } = props
+  const { group = [], index = 1, first, last, pageCount = 1 } = pageContext
   const previousUrl = index - 1 == 1 ? '' : (index - 1).toString()
   const nextUrl = (index + 1).toString()
   return (
