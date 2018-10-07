@@ -121,7 +121,7 @@ export const pageQuery = graphql`
       }
     }
     defaultImage: imageSharp(
-      original: { src: { regex: "/pexels-photo-132340.jpeg/" } }
+      original: { src: { regex: "/pexels-photo-132340/" } }
     ) {
       resize(height: 500, cropFocus: ATTENTION, width: 1000) {
         src

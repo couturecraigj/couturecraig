@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
+import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import get from 'lodash/get'
@@ -16,38 +17,40 @@ const BlogPostTemplate = props => {
   )
   const keywords = get(props, 'data.wordpressPost.keywords', [])
   return (
-    <div>
-      <Helmet>
-        <title>{post.title}</title>
-        <meta name="description" content={post.excerpt} />
-        <meta name="author" content={get(author, 'name')} />
-        <meta name="keywords" content={keywords} />
-      </Helmet>
+    <Layout>
+      <div>
+        <Helmet>
+          <title>{post.title}</title>
+          <meta name="description" content={post.excerpt} />
+          <meta name="author" content={get(author, 'name')} />
+          <meta name="keywords" content={keywords} />
+        </Helmet>
 
-      <div id="main" className="alt">
-        <section id="one">
-          <div className="inner">
-            <header className="major">
-              <h1>{post.title}</h1>
-            </header>
-            <span className="image main">
-              <Img
-                sizes={get(
-                  post,
-                  'featured_media.localFile.childImageSharp.sizes',
-                  get(props.data, 'sizes.sizes')
-                )}
-                alt=""
-              />
-            </span>
-            <h4>{post.date}</h4>
-            <hr />
-            <h5>{get(author, 'name')}</h5>
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          </div>
-        </section>
+        <div id="main" className="alt">
+          <section id="one">
+            <div className="inner">
+              <header className="major">
+                <h1>{post.title}</h1>
+              </header>
+              <span className="image main">
+                <Img
+                  fluid={get(
+                    post,
+                    'featured_media.localFile.childImageSharp.fluid',
+                    get(props.data, 'fluid.fluid')
+                  )}
+                  alt=""
+                />
+              </span>
+              <h4>{post.date}</h4>
+              <hr />
+              <h5>{get(author, 'name')}</h5>
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 
@@ -55,10 +58,8 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostByPath($slug: String!) {
-    sizes: imageSharp(
-      original: { src: { regex: "/pexels-photo-132340.jpeg/" } }
-    ) {
-      sizes(
+    fluid: imageSharp(original: { src: { regex: "/pexels-photo-132340/" } }) {
+      fluid(
         quality: 100
         traceSVG: {
           color: "#8d82c4"
@@ -68,7 +69,7 @@ export const pageQuery = graphql`
         }
         toFormat: PNG
       ) {
-        ...GatsbyImageSharpSizes_withWebp_tracedSVG
+        ...GatsbyImageSharpFluid_withWebp_tracedSVG
       }
     }
     site {
@@ -88,7 +89,7 @@ export const pageQuery = graphql`
       featured_media {
         localFile {
           childImageSharp {
-            sizes(
+            fluid(
               cropFocus: ENTROPY
               maxWidth: 1000
               quality: 100
@@ -99,7 +100,7 @@ export const pageQuery = graphql`
                 blackOnWhite: false
               }
             ) {
-              ...GatsbyImageSharpSizes_withWebp_tracedSVG
+              ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
         }

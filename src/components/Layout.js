@@ -20,10 +20,10 @@ const query = graphql`
         description
       }
     }
-    sizes: imageSharp(
+    fluid: imageSharp(
       original: { src: { regex: "/pexels-photo-185699.jpeg/" } }
     ) {
-      sizes(
+      fluid(
         traceSVG: {
           color: "#8d82c4"
           turnPolicy: TURNPOLICY_MINORITY
@@ -31,7 +31,7 @@ const query = graphql`
         }
         toFormat: PNG
       ) {
-        ...GatsbyImageSharpSizes_withWebp_tracedSVG
+        ...GatsbyImageSharpFluid_withWebp_tracedSVG
       }
     }
   }
@@ -77,7 +77,7 @@ class Template extends React.Component {
               this.state.isMenuVisible ? 'is-menu-visible' : ''
             }`}
           >
-            {/* <BgImage sizes={data.sizes.sizes} /> */}
+            {/* <BgImage fluid={data.fluid.fluid} /> */}
             <Helmet titleTemplate={`%s | ${data.site.siteMetadata.title}`}>
               <meta
                 name="description"
@@ -100,7 +100,7 @@ class Template extends React.Component {
 }
 
 Template.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.object,
 }
 
 export default Template

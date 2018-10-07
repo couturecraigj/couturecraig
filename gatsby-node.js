@@ -11,8 +11,8 @@ exports.createPages = ({ graphql, actions }) => {
   // pexels-photo-132340
   query = `
       {
-        defaultSharp: imageSharp(original: {src: { regex: "/pexels-photo-132340.jpeg/" }}) {
-          sizes(
+        defaultSharp: imageSharp(original: {src: { regex: "/pexels-photo-132340/" }}) {
+          fluid(
             traceSVG: {
               color: "#8d82c4"
               turnPolicy: TURNPOLICY_MINORITY
@@ -20,6 +20,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
             cropFocus: ATTENTION
             maxWidth: 1000
+            quality: 100
             toFormat: PNG
           ) {
             tracedSVG
@@ -43,7 +44,7 @@ exports.createPages = ({ graphql, actions }) => {
               featured_media {
                 localFile {
                   childImageSharp {
-                    sizes(
+                    fluid(
                       traceSVG: {
                         color: "#8d82c4"
                         background: "#252a43"
@@ -52,6 +53,7 @@ exports.createPages = ({ graphql, actions }) => {
                       }
                       cropFocus: ATTENTION
                       maxWidth: 1000
+                      quality: 100
                       toFormat: PNG
                     ) {
                       tracedSVG
@@ -87,7 +89,7 @@ exports.createPages = ({ graphql, actions }) => {
               featured_media {
                 localFile {
                   childImageSharp {
-                    sizes(
+                    fluid(
                       traceSVG: {
                         color: "#8d82c4"
                         background: "#252a43"
@@ -95,6 +97,7 @@ exports.createPages = ({ graphql, actions }) => {
                         blackOnWhite: false
                       }
                       cropFocus: ATTENTION
+                      quality: 100
                       maxWidth: 1000
                       toFormat: PNG
                     ) {
@@ -132,7 +135,6 @@ exports.createPages = ({ graphql, actions }) => {
         _.each(
           _.get(result, 'data.allWordpressPage.edges', []),
           (edge, index) => {
-            console.log(edge.node.slug)
             createPage({
               path: edge.node.slug.startsWith('wants-to')
                 ? `/${edge.node.slug}`.replace(/-/g, '/')
@@ -159,7 +161,7 @@ exports.createPages = ({ graphql, actions }) => {
               edge =>
                 _.has(
                   edge,
-                  'node.featured_media.localFile.childImageSharp.sizes'
+                  'node.featured_media.localFile.childImageSharp.fluid'
                 )
                   ? edge
                   : Object.assign({}, edge, {
@@ -191,7 +193,7 @@ exports.createPages = ({ graphql, actions }) => {
             createPage: createPage,
             pageTemplate: blogPageList,
             context: {
-              sizes: _.get(result, 'data.defaultSharp.sizes'),
+              fluid: _.get(result, 'data.defaultSharp.fluid'),
             },
             // pageLength: 5, // This is optional and defaults to 10 if not used
             pathPrefix: 'blog',
