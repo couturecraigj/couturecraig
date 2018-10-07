@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import { graphql } from 'gatsby'
+import { sterilizeText } from '../utils/wordpress-helpers'
 import Layout from '../components/Layout'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
@@ -27,7 +28,7 @@ const LandingByPath = props => {
     <Layout>
       <div>
         <Helmet>
-          <title>{props.data.wordpressPage.title}</title>
+          <title>{sterilizeText(props.data.wordpressPage.title)}</title>
           <meta
             name="description"
             content={`${props.data.wordpressPage.title}, ${
@@ -77,7 +78,8 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(
               cropFocus: ENTROPY
-              maxWidth: 1400
+              maxWidth: 1500
+              quality: 100
               traceSVG: {
                 color: "#8d82c4"
                 background: "#333856"
