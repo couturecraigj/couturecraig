@@ -6,6 +6,12 @@ import Helmet from 'react-helmet'
 import BgImage from '../components/BgImage'
 import Banner from '../components/Banner'
 import Layout from '../components/Layout'
+import styled from 'styled-components'
+
+const Block = styled.header`
+  overflow: hidden;
+  height: 100%;
+`
 
 const structuredData = `{
   "@context": "http://schema.org",
@@ -57,10 +63,10 @@ class HomeIndex extends React.Component {
                     )})`,
                   }}
                 >
-                  <header className="major">
+                  <Block className="major">
                     <h3 dangerouslySetInnerHTML={{ __html: node.title }} />
                     <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-                  </header>
+                  </Block>
                   <Link
                     to={`/${node.date}/${node.slug}`}
                     className="link primary"
