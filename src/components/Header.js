@@ -9,7 +9,7 @@ const Strong = styled.div`
   background-color: #ffffff;
   display: inline-block;
   line-height: 0.5em;
-  margin: 1.4em 0 0 0;
+  margin: 1em 0 0 0;
   padding: 0.35em 0.8em;
   border-radius: 0.125em;
   &:hover {
@@ -22,7 +22,7 @@ const query = graphql`
     file(absolutePath: { regex: "/Logo/" }) {
       id
       childImageSharp {
-        resize(width: 20) {
+        resize(width: 23) {
           src
         }
       }
