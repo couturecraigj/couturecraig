@@ -102,6 +102,7 @@ class Template extends React.Component {
               />
 
               <link rel="icon" href="/favicon.ico?v=12" type="image/x-icon" />
+              <link rel="icon" href="/favicon.ico" />
             </Helmet>
             <div id="wrapper">
               <Header onToggleMenu={this.handleToggleMenu} />

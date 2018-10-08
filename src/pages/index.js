@@ -45,7 +45,6 @@ class HomeIndex extends React.Component {
           <Helmet>
             <title>Home</title>
             <meta name="description" content={siteDescription} />
-            <link rel="shortcut icon" href="/favicon.ico?v=1" />
           </Helmet>
 
           <Banner />
