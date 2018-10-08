@@ -83,7 +83,8 @@ class Template extends React.Component {
                 name="description"
                 content={data.site.siteMetadata.description}
               />
-              <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+              <link rel="icon" href="/favicon.ico?v=1" type="image/x-icon" />
             </Helmet>
             <div id="wrapper">
               <Header onToggleMenu={this.handleToggleMenu} />
