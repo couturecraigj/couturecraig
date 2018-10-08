@@ -10,7 +10,7 @@ const Strong = styled.div`
   display: inline-block;
   line-height: 0.5em;
   margin: 1.4em 0 0 0;
-  padding: 0.125em 0.5em 0.125em 0.5em;
+  padding: 0.35em 0.8em;
   border-radius: 0.125em;
   &:hover {
     background-color: #9bf1ff !important;
