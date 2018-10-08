@@ -19,6 +19,7 @@ module.exports = {
     description,
     siteUrl,
     backgroundImage: './src/assets/images/pexels-photo-185699.jpeg',
+    logo: './src/assets/images/Logo.png',
   },
   pathPrefix: '/',
   plugins: [
